@@ -8,34 +8,11 @@ import Flower from '@/components/icons/flower-tulip-svgrepo-com.svg'
 import Face from '@/components/icons/girl-face-svgrepo-com.svg'
 import Body from '@/components/icons/body-svgrepo-com.svg'
 import Service from '@/components/Service.astro';
-import { MapWrapper } from '@/components/MapWrapper';
+import MapWrapper from '@/components/MapWrapper.astro';
+import Gallery from '@/components/Gallery.astro';
+import NavMobile from '@/components/NavMobile';
 
-const items = [
-  {
-    "label": "INICIO",
-    "href": "/home"
-  },
-  {
-    "label": "SERVICIOS",
-    "href": "#servicios"
-  },
-  {
-    "label": "BLOG",
-    "href": "/blog"
-  },
-  {
-    "label": "GALERIA",
-    "href": "/galeria"
-  },
-  {
-    "label": "UBICACION",
-    "href": "/ubicacion"
-  },
-  {
-    "label": "CONTACTA",
-    "href": "/contacta"
-  },
-]
+
 
 const images = [
   {
@@ -48,6 +25,29 @@ const images = [
   },
   {
     "path": "./images/7eb0dcf310238450490b27502631cb48.jpg",
+    "alt": "TBD"
+  },
+]
+
+const images2 = [
+  {
+    "path": "./images/Limpieza-facial-profunda.jpg",
+    "alt": "TBD"
+  },
+  {
+    "path": "./images/beauty-face-massage-56884.jpg",
+    "alt": "TBD"
+  },
+  {
+    "path": "./images/7eb0dcf310238450490b27502631cb48.jpg",
+    "alt": "TBD"
+  },
+  {
+    "path": "./images/estetica-facial-barcelona-maxilodexeus.jpg",
+    "alt": "TBD"
+  },
+  {
+    "path": "./images/medicina-estetica-mujer-1024x492.jpg",
     "alt": "TBD"
   },
 ]
@@ -67,49 +67,69 @@ const images = [
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet/dist/leaflet.css"
+  />
+  <script
+    src="https://unpkg.com/leaflet/dist/leaflet.js"
+    defer
+  ></script>
 		<title>Estetica Derma</title>
 	</head>
 	<body>
     <main class="flex flex-col items-center">
-      <section class="relative">
-        <div class="opacity-60 w-full">
-          <CarouselWrapper images={images} height="h-full" client:load />
+      <section class="hidden lg:flex lg:relative flex-col-reverse justify-between lg:flex-col">
+        <div class="opacity-50 w-full">
+          <CarouselWrapper images={images} client:load />
         </div>
-        <nav class="absolute top-[0.1rem] right-1/2 translate-x-1/2 translate-y-1/2 flex gap-28 mt-2">
+        <nav class="flex justify-around items-center px-6 lg:absolute lg:top-[0.1rem] lg:right-1/2 lg:translate-x-1/2 lg:translate-y-1/2 lg:flex py-2 mt-2">
           <Logo />
-          <NavMenu items={items} client:load />
+          <NavMenu client:visible />
         </nav>
       </section>
-      <section class="flex flex-col items-center px-10 mt-10">
-        <TitlePage title="Bienvenido a" subtitle="ESTETICA DERMA"/>
-        <p class="mt-2 font-inter font-light">En Estética Derma encontrarás técnicas de terapia y bienestar. Masajes corporales, tratamientos faciales, manicuras, pedicuras, depilaciones, permanente de pestañas, todas nuestras técnicas basadas en estética de vanguardia. Realizamos tratamientos reductores con aparatologia de última tecnología. En nuestro centro encontrarás una amplia selección de tratamientos y productos de primera calidad, siempre adaptados a ti. Ven a Derma, relájate y déjate mimar.</p>
+
+      <nav class="lg:hidden sticky top-0 bg-rose-50 shadow w-full z-[99999] flex justify-around items-center p-4">
+        <Logo />
+        <NavMobile client:visible />
+      </nav>
+      <div class="lg:hidden w-full">
+        <CarouselWrapper images={images} client:load />
+      </div>
+
+      <section id="home" class="flex flex-col items-center justify-center px-10 mt-10">
+        <TitlePage title="Bienvenido a" subtitle="ESTÉTICA DERMA"/>
+        <p class="mt-2 font-inter font-light text-2xl text-center">En Estética Derma encontrarás técnicas de terapia y bienestar. Masajes corporales, tratamientos faciales, manicuras, pedicuras, depilaciones, permanente de pestañas, todas nuestras técnicas basadas en estética de vanguardia. Realizamos tratamientos reductores con aparatologia de última tecnología. En nuestro centro encontrarás una amplia selección de tratamientos y productos de primera calidad, siempre adaptados a ti.</p>
+        <p class="mt-2 font-inter font-light text-2xl text-center"> Ven a Derma, relájate y déjate mimar.</p>
       </section>
-      <section class="flex justify-around w-full mt-12 bg-gray-100 py-12 h-">
+      <section id="servicios" class="flex flex-col sm:flex-row justify-around w-full mt-12  py-12 px-10 gap-28">
         <Service src={Flower.src} title="TÉCNICAS SPA" items={["Ayurveda", "Masaje geotermal (Chakra Stone Massage)", "Magic honey (Trac. dulce, intenso, envolvente)", "Tratamiento a la turba", "Oil Treatment (Mermelada de aceite de oliva)", "Chocolate massage (El masaje que te mima)", "Kerala (Craneal massage)", "Scrub (Masaje con sales del mar muerto)", "Tratamiento manteca de karité", "PINDAS", "Tibet Treatment", "Pindasweda Treatment", "Bamboo Treatment"]}/>
 
-        <Service src={Face.src} title="ESTÉTICA FACIAL" items={["Limpieza de cutis (incluye labio superior y repaso de cejas)", "Trac facial (pieles grasas, antiarrugas, oxigenación, hidratación, etc.)", "Velo colágeno y ADN marino", "Luxury Line (caviar)", "Peeling (enzimático/glicólico)", "Depilación a la cera caliente", "Depilación a la cera tibia", "Depilación eléctrica", "Depilación láser de diodo (LightSheer)"]}/>
+        <Service src={Face.src} title="ESTÉTICA FACIAL" items={["Limpieza de cutis (incluye labio superior y repaso de cejas)", "Trac facial (pieles grasas, antiarrugas, oxigenación, etc.)", "Velo colágeno y ADN marino", "Luxury Line (caviar)", "Peeling (enzimático/glicólico)", "Depilación a la cera caliente", "Depilación a la cera tibia", "Depilación eléctrica", "Depilación láser de diodo (LightSheer)"]}/>
 
         <Service src={Body.src} title="ESTÉTICA CORPORAL" items={["Quiromasaje (muscular y antiestrés)", "Drenaje linfático", "Reflexología", "Trac celulitis", "Trac flacidez", "Trac piernas cansadas", "Presoterapia", "Gimnasia pasiva", "Fangoterapia", "Algoterapia", "Pedicuras y manicuras (Trac parafina y trac a la miel)"]}/>
     </section>
 
 
 
-    <section class="flex flex-col items-center px-10 mt-10 w-2/3">
+    <section id="galeria" class="flex flex-col items-center px-10 mt-10 w-2/3">
       <TitlePage title="Mira como trabajamos" subtitle="GALERÍA"/>
-      <CarouselWrapper images={images} height="h-2/3" client:load />
+      <!-- <CarouselWrapper images={images} height="w-[25rem] h-[15rem] sm:h-[15rem] md:h-[30rem] sm:w-full" client:load /> -->
+      <Gallery images={images2} />
     </section>
       
-    <section class="flex flex-col items-center px-10 -mt-40">
+    <section id="ubicacion" class="flex flex-col items-center mt-20">
       <TitlePage title="Estamos aquí" subtitle="NUESTRA UBICACIÓN"/>
+      <MapWrapper />
     </section>
-    <section class="flex justify-around w-full mt-12 bg-gray-100 py-12 h-">
 
-      <div class="flex flex-col">
+    <section id="contacta" class="flex flex-col sm:flex-row justify-around w-full mt-12 py-12 px-10">
+      <div class="flex flex-col items-center sm:items-start">
         <h3 class="text-2xl font-inter font-medium">SOBRE NOSOTROS</h3>
         <p class="font-inter font-light">DERMA, centro de estética y terápia UNISEX</p>
         <p class="font-inter font-light">ubicada en Hospitalet de Llobregat (Barcelona)</p>
       </div >
-      <div class="flex flex-col">
+      <div class="flex flex-col mt-6 sm:mt-0 items-center sm:items-start">
         <h3 class="text-2xl font-inter font-medium">HORARIO</h3>
         <ul class="font-inter font-light">
           <li>Lunes: 16h – 20h<li></li>
@@ -117,7 +137,7 @@ const images = [
           <li>Sábado: 10h – 14h</li>
         </ul>
       </div>
-      <div class="flex flex-col">
+      <div class="flex flex-col mt-6 sm:mt-0 items-center sm:items-start">
         <h3 class="text-2xl font-inter font-medium">CONTACTO</h3>
         <ul class="font-inter font-light">
           <li>Avenida Dr. Severo Ochoa 9, bajos</li>
@@ -128,7 +148,7 @@ const images = [
       </div>
     </section>
 
-    <section class="flex flex-col items-center px-10 mt-20">
+    <section class="flex flex-col items-center px-10 mt-20 mb-20">
       <TitlePage title="Pregúntanos algo" subtitle="CONTACTO"/>
       <form action="" class="flex flex-col font-inter">
         <div class="flex flex-col">
@@ -152,7 +172,7 @@ const images = [
           <textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" rows="10" cols="100"></textarea>
         </div>
 
-        <button class="bg-rose-300 hover:bg-fuchsia-400 text-white font-bold py-2 px-4 rounded w-32 mt-3">ENVIAR</button>
+        <button class="bg-rose-300 hover:bg-red-200 text-white font-bold py-2 px-4 rounded w-32 mt-3">ENVIAR</button>
 
       </form>
     </section>

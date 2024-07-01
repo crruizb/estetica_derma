@@ -1,0 +1,32 @@
+<head>
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet/dist/leaflet.css"
+  />
+  <script
+    src="https://unpkg.com/leaflet/dist/leaflet.js"
+    defer
+  ></script>
+</head>
+
+<div id="map" class="w-[25rem] h-[15rem] md:w-[40rem] md:h-[20rem] lg:w-[70rem] lg:h-[40rem]"></div>
+
+<script is:inline>
+  // Ensure Leaflet is loaded
+  document.addEventListener('DOMContentLoaded', () => {
+    const L = window.L;
+    if (L) {
+      const map = L.map('map').setView([41.37601705153712, 2.100368533812852], 50);
+
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution:
+          '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      }).addTo(map);
+
+      L.marker([41.37601705153712, 2.100368533812852])
+        .addTo(map)
+        .bindPopup('Derma')
+        .openPopup();
+    }
+  });
+</script>
