@@ -14,9 +14,10 @@ interface Image {
 
 interface Images {
   images: Image[];
+  height: string;
 }
 
-export function CarouselWrapper({images} : Images) {
+export function CarouselWrapper({images, height} : Images) {
   return (
     <Carousel 
       opts={{
@@ -33,7 +34,7 @@ export function CarouselWrapper({images} : Images) {
           images.map((image) => (
             <CarouselItem key={image.path}>
               <div className="h-[48rem]">
-                <img className="bg-blue-600 w-full h-full" src={image.path} alt={image.alt} />
+                <img className={`w-full ${height}`} src={image.path} alt={image.alt} />
               </div>
               
             </CarouselItem>
