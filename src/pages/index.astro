@@ -11,6 +11,8 @@ import Service from '@/components/Service.astro';
 import MapWrapper from '@/components/MapWrapper.astro';
 import Gallery from '@/components/Gallery.astro';
 import NavMobile from '@/components/NavMobile';
+import InstagramIcon from '@/components/icons/InstagramIcon.astro'
+import WhatsAppButton from '@/components/WhatsAppButton.astro';
 
 
 
@@ -83,14 +85,16 @@ const images2 = [
         <div class="opacity-50 w-full">
           <CarouselWrapper images={images} client:load />
         </div>
-        <nav class="flex justify-around items-center px-6 lg:absolute lg:top-[0.1rem] lg:right-1/2 lg:translate-x-1/2 lg:translate-y-1/2 lg:flex py-2 mt-2">
+        <nav class="flex justify-around items-center px-6 lg:absolute lg:top-[0.1rem] lg:right-1/2 lg:translate-x-1/2 lg:translate-y-1/2 lg:flex py-2 mt-2 gap-8">
           <Logo />
           <NavMenu client:visible />
+          <InstagramIcon />
         </nav>
       </section>
 
-      <nav class="lg:hidden sticky top-0 bg-rose-50 shadow w-full z-[99999] flex justify-around items-center p-4">
+      <nav class="lg:hidden sticky top-0 bg-rose-50 shadow w-full z-[99999] flex justify-around items-center p-4 gap-4">
         <Logo />
+        <InstagramIcon />
         <NavMobile client:visible />
       </nav>
       <div class="lg:hidden w-full">
@@ -99,85 +103,55 @@ const images2 = [
 
       <section id="home" class="flex flex-col items-center justify-center px-10 mt-10">
         <TitlePage title="Bienvenido a" subtitle="ESTÉTICA DERMA"/>
-        <p class="mt-2 font-inter font-light text-2xl text-center">En Estética Derma encontrarás técnicas de terapia y bienestar. Masajes corporales, tratamientos faciales, manicuras, pedicuras, depilaciones, permanente de pestañas, todas nuestras técnicas basadas en estética de vanguardia. Realizamos tratamientos reductores con aparatologia de última tecnología. En nuestro centro encontrarás una amplia selección de tratamientos y productos de primera calidad, siempre adaptados a ti.</p>
-        <p class="mt-2 font-inter font-light text-2xl text-center"> Ven a Derma, relájate y déjate mimar.</p>
+        <p class="mt-2 font-inter font-light text-xl text-center lg:text-2xl">En Estética Derma encontrarás técnicas de terapia y bienestar. Masajes corporales, tratamientos faciales, manicuras, pedicuras, depilaciones, permanente de pestañas, todas nuestras técnicas basadas en estética de vanguardia.</p> 
+        <p class="mt-2 font-inter font-light text-xl text-center lg:text-2xl lg:text-2xl">Realizamos tratamientos reductores con aparatologia de última tecnología. En nuestro centro encontrarás una amplia selección de tratamientos y productos de primera calidad, siempre adaptados a ti.</p>
+        <p class="mt-2 font-inter font-light text-xl text-center lg:text-2xl"> Ven a Derma, relájate y déjate mimar.</p>
       </section>
       <section id="servicios" class="flex flex-col sm:flex-row justify-around w-full mt-12  py-12 px-10 gap-28">
         <Service src={Flower.src} title="TÉCNICAS SPA" items={["Ayurveda", "Masaje geotermal (Chakra Stone Massage)", "Magic honey (Trac. dulce, intenso, envolvente)", "Tratamiento a la turba", "Oil Treatment (Mermelada de aceite de oliva)", "Chocolate massage (El masaje que te mima)", "Kerala (Craneal massage)", "Scrub (Masaje con sales del mar muerto)", "Tratamiento manteca de karité", "PINDAS", "Tibet Treatment", "Pindasweda Treatment", "Bamboo Treatment"]}/>
 
-        <Service src={Face.src} title="ESTÉTICA FACIAL" items={["Limpieza de cutis (incluye labio superior y repaso de cejas)", "Trac facial (pieles grasas, antiarrugas, oxigenación, etc.)", "Velo colágeno y ADN marino", "Luxury Line (caviar)", "Peeling (enzimático/glicólico)", "Depilación a la cera caliente", "Depilación a la cera tibia", "Depilación eléctrica", "Depilación láser de diodo (LightSheer)"]}/>
+        <Service src={Face.src} title="ESTÉTICA FACIAL" items={["Limpieza de cutis (incluye labio superior y repaso de cejas)", "Trac facial (pieles grasas, antiarrugas, oxigenación, etc.)", "Velo colágeno y ADN marino", "Luxury Line (caviar)", "Peeling (enzimático/glicólico)", "Reinaixença ( Kobido,Shiatsu y Jade )", "Derma pen ( estimulador de colágeno y elastina)", "Vitamina C ( iluminador )", "Radiant Eye ( Contorno ojos )", "Depilación a la cera caliente", "Depilación a la cera tibia", "Depilación eléctrica", "Depilación láser de diodo (LightSheer)"]}/>
 
-        <Service src={Body.src} title="ESTÉTICA CORPORAL" items={["Quiromasaje (muscular y antiestrés)", "Drenaje linfático", "Reflexología", "Trac celulitis", "Trac flacidez", "Trac piernas cansadas", "Presoterapia", "Gimnasia pasiva", "Fangoterapia", "Algoterapia", "Pedicuras y manicuras (Trac parafina y trac a la miel)"]}/>
-    </section>
+        <Service src={Body.src} title="ESTÉTICA CORPORAL" items={["Quiromasaje (muscular y antiestrés)", "Drenaje linfático", "Reflexología", "Trac celulitis", "Trac flacidez", "Trac piernas cansadas", "Presoterapia", "Alta frecuencia", "Roll systemic", "Fangoterapia", "Algoterapia", "Pedicuras y manicuras (Trac parafina y trac a la miel)", "Maderoterapia"]}/>
+      </section>
 
 
 
-    <section id="galeria" class="flex flex-col items-center px-10 mt-10 w-2/3">
-      <TitlePage title="Mira como trabajamos" subtitle="GALERÍA"/>
-      <!-- <CarouselWrapper images={images} height="w-[25rem] h-[15rem] sm:h-[15rem] md:h-[30rem] sm:w-full" client:load /> -->
-      <Gallery images={images2} />
-    </section>
-      
-    <section id="ubicacion" class="flex flex-col items-center mt-20">
-      <TitlePage title="Estamos aquí" subtitle="NUESTRA UBICACIÓN"/>
-      <MapWrapper />
-    </section>
+      <section id="galeria" class="flex flex-col items-center px-10 mt-10 w-2/3">
+        <TitlePage title="Mira como trabajamos" subtitle="GALERÍA"/>
+        <Gallery images={images2} />
+      </section>
+        
+      <section id="ubicacion" class="flex flex-col items-center mt-20">
+        <TitlePage title="Estamos aquí" subtitle="NUESTRA UBICACIÓN"/>
+        <MapWrapper />
+      </section>
 
-    <section id="contacta" class="flex flex-col sm:flex-row justify-around w-full mt-12 py-12 px-10">
-      <div class="flex flex-col items-center sm:items-start">
-        <h3 class="text-2xl font-inter font-medium">SOBRE NOSOTROS</h3>
-        <p class="font-inter font-light">DERMA, centro de estética y terápia UNISEX</p>
-        <p class="font-inter font-light">ubicada en Hospitalet de Llobregat (Barcelona)</p>
-      </div >
-      <div class="flex flex-col mt-6 sm:mt-0 items-center sm:items-start">
-        <h3 class="text-2xl font-inter font-medium">HORARIO</h3>
-        <ul class="font-inter font-light">
-          <li>Lunes: 16h – 20h<li></li>
-          <li>Martes – Viernes: 10h – 20h</li>
-          <li>Sábado: 10h – 14h</li>
-        </ul>
-      </div>
-      <div class="flex flex-col mt-6 sm:mt-0 items-center sm:items-start">
-        <h3 class="text-2xl font-inter font-medium">CONTACTO</h3>
-        <ul class="font-inter font-light">
-          <li>Avenida Dr. Severo Ochoa 9, bajos</li>
-          <li>Email: contacto@esteticaderma.com</li>
-          <li>Teléfono: 934385970 – 691310652</li>
-        </ul>
-
-      </div>
-    </section>
-
-    <section class="flex flex-col items-center px-10 mt-20 mb-20">
-      <TitlePage title="Pregúntanos algo" subtitle="CONTACTO"/>
-      <form action="" class="flex flex-col font-inter">
-        <div class="flex flex-col">
-          <label for="" class="block text-gray-700 text-sm font-bold mb-2">Tu nombre (requerido)</label>
-          <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" name="name" id="" placeholder="Nombre" />
+      <section id="contacta" class="flex flex-col sm:flex-row justify-around w-full mt-12 py-0 px-10">
+        <div class="flex flex-col items-center sm:items-start">
+          <h3 class="text-2xl font-inter font-medium">SOBRE NOSOTROS</h3>
+          <p class="font-inter font-light text-sm lg:text-lg">DERMA, centro de estética y terápia UNISEX</p>
+          <p class="font-inter font-light text-sm lg:text-lg">ubicada en Hospitalet de Llobregat (Barcelona)</p>
+        </div >
+        <div class="flex flex-col mt-6 sm:mt-0 items-center sm:items-start">
+          <h3 class="text-2xl font-inter font-medium">HORARIO</h3>
+          <ul class="font-inter font-light text-sm lg:text-lg">
+            <li>Lunes: 16h – 20h<li></li>
+            <li>Martes – Viernes: 10h – 20h</li>
+            <li>Sábado: 10h – 14h</li>
+          </ul>
         </div>
+        <div class="flex flex-col mt-6 sm:mt-0 items-center sm:items-start">
+          <h3 class="text-2xl font-inter font-medium">CONTACTO</h3>
+          <ul class="font-inter font-light text-sm lg:text-lg">
+            <li>Avenida Dr. Severo Ochoa 9, bajos</li>
+            <li>Email: contacto@esteticaderma.com</li>
+            <li>Teléfono: 934385970 – 691310652</li>
+          </ul>
 
-        <div class="flex flex-col mt-6">
-          <label for="" class="block text-gray-700 text-sm font-bold mb-2">Tu correo electrónico (requerido)</label>
-          <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"type="text" name="name" id="" placeholder="Correo electrónico" />
         </div>
-
-
-        <div class="flex mt-6 flex-col ">
-          <label for="" class="block text-gray-700 text-sm font-bold mb-2">Asunto</label>
-          <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"type="text" name="name" id="" placeholder="Asunto" />
-        </div>
-
-        <div class="flex mt-6 flex-col ">
-          <label for="" class="block text-gray-700 text-sm font-bold mb-2">Tu mensaje</label>
-          <textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" rows="10" cols="100"></textarea>
-        </div>
-
-        <button class="bg-rose-300 hover:bg-red-200 text-white font-bold py-2 px-4 rounded w-32 mt-3">ENVIAR</button>
-
-      </form>
-    </section>
-
+      </section>
     </main>
-
+    <WhatsAppButton />
 	</body>
 </html>

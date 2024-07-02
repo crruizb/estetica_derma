@@ -14,9 +14,5 @@ export const routes = [
   {
     "label": "UBICACIÓN",
     "href": "#ubicacion"
-  },
-  {
-    "label": "CONTACTA",
-    "href": "#contacta"
-  },
+  }
 ]
