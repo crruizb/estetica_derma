@@ -6,7 +6,7 @@ interface Props {
 }
 
 export default function Modal({children, title} : Props) {
-  const [showModal, setShowModal] = React.useState(false);
+  const [showModal, setShowModal] = React.useState(true);
   return (
     <>
       {showModal ? (
