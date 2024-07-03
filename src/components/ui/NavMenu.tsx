@@ -10,15 +10,6 @@ import {
 } from "@/components/ui/navigation-menu";
 import {routes} from '../../routes'
 
-interface MenuItem {
-  label: string;
-  href: string;
-}
-
-interface MenuItems {
-  items: MenuItem[];
-}
-
 export function NavMenu() {
   return (
     <NavigationMenu className="hidden lg:flex gap-16 justify-center items-center lg:text-sm xl:text-lg">

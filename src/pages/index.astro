@@ -13,7 +13,9 @@ import Gallery from '@/components/Gallery.astro';
 import NavMobile from '@/components/NavMobile';
 import InstagramIcon from '@/components/icons/InstagramIcon.astro'
 import WhatsAppButton from '@/components/WhatsAppButton.astro';
-
+import Modal from '@/components/Modal';
+import FirmasLogos from '@/components/FirmasLogos'
+import CookiesBanner from '@/components/CookiesBanner';
 
 
 const images = [
@@ -80,6 +82,10 @@ const images2 = [
 		<title>Estetica Derma</title>
 	</head>
 	<body>
+    <Modal title='Bono regalo'client:load>
+      <p class="text-sm lg:text-lg font-inter">Regala bienestar y belleza a cualquier ser querido con nuestros bonos regalos. Cualquier tratamiento que tengamos puede ser incluido en ellos.</p>
+      <p class="text-sm lg:text-lg font-inter"><a class="text-rose-400" href="https://wa.me/34691310652">Contacta con nosotros</a> o ven a vernos para más información!</p>
+    </Modal>
     <main class="flex flex-col items-center">
       <section class="hidden lg:flex lg:relative flex-col-reverse justify-between lg:flex-col">
         <div class="opacity-50 w-full">
@@ -108,11 +114,11 @@ const images2 = [
         <p class="mt-2 font-inter font-light text-xl text-center lg:text-2xl"> Ven a Derma, relájate y déjate mimar.</p>
       </section>
       <section id="servicios" class="flex flex-col sm:flex-row justify-around w-full mt-12  py-12 px-10 gap-28">
-        <Service src={Flower.src} title="TÉCNICAS SPA" items={["Ayurveda", "Masaje geotermal (Chakra Stone Massage)", "Magic honey (Trac. dulce, intenso, envolvente)", "Tratamiento a la turba", "Oil Treatment (Mermelada de aceite de oliva)", "Chocolate massage (El masaje que te mima)", "Kerala (Craneal massage)", "Scrub (Masaje con sales del mar muerto)", "Tratamiento manteca de karité", "PINDAS", "Tibet Treatment", "Pindasweda Treatment", "Bamboo Treatment"]}/>
+        <Service src={Flower.src} title="TÉCNICAS SPA" items={["Ayurveda", "Masaje geotermal (Chakra Stone Massage)", "Magic honey (Trac. dulce, intenso, envolvente)", "Tratamiento a la turba", "Oil Treatment (Mermelada de aceite de oliva)", "Chocolate massage (El masaje que te mima)", "Kerala (Craneal massage)", "Scrub (Masaje con sales del mar muerto)", "Tratamiento manteca de karité", "Tibet Treatment", "Pindasweda Treatment", "Bamboo Treatment", "Ritual Candle"]}/>
 
         <Service src={Face.src} title="ESTÉTICA FACIAL" items={["Limpieza de cutis (incluye labio superior y repaso de cejas)", "Trac facial (pieles grasas, antiarrugas, oxigenación, etc.)", "Velo colágeno y ADN marino", "Luxury Line (caviar)", "Peeling (enzimático/glicólico)", "Reinaixença ( Kobido,Shiatsu y Jade )", "Derma pen ( estimulador de colágeno y elastina)", "Vitamina C ( iluminador )", "Radiant Eye ( Contorno ojos )", "Depilación a la cera caliente", "Depilación a la cera tibia", "Depilación eléctrica", "Depilación láser de diodo (LightSheer)"]}/>
 
-        <Service src={Body.src} title="ESTÉTICA CORPORAL" items={["Quiromasaje (muscular y antiestrés)", "Drenaje linfático", "Reflexología", "Trac celulitis", "Trac flacidez", "Trac piernas cansadas", "Presoterapia", "Alta frecuencia", "Roll systemic", "Fangoterapia", "Algoterapia", "Pedicuras y manicuras (Trac parafina y trac a la miel)", "Maderoterapia"]}/>
+        <Service src={Body.src} title="ESTÉTICA CORPORAL" items={["Quiromasaje (muscular y antiestrés)", "Drenaje linfático", "Reflexología", "Trac celulitis", "Trac flacidez", "Trac piernas cansadas", "Presoterapia Ballancer", "Alta frecuencia", "Roll systemic", "Fangoterapia", "Algoterapia", "Pedicuras y manicuras (Trac parafina y trac a la miel)", "Maderoterapia"]}/>
       </section>
 
 
@@ -122,6 +128,8 @@ const images2 = [
         <Gallery images={images2} />
       </section>
         
+      <FirmasLogos client:load/>
+
       <section id="ubicacion" class="flex flex-col items-center mt-20">
         <TitlePage title="Estamos aquí" subtitle="NUESTRA UBICACIÓN"/>
         <MapWrapper />
@@ -151,6 +159,7 @@ const images2 = [
 
         </div>
       </section>
+      <CookiesBanner client:load />
     </main>
     <WhatsAppButton />
 	</body>
