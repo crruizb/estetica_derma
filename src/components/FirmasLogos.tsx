@@ -3,23 +3,23 @@ import SliderNumber from "./Slider"
 const images = [
   {
     "src": "images/ballancer-platinum-logo-2.png",
-    "alt": ""
+    "alt": "Logo de Ballancer"
   },
   {
     "src": "images/nyxpert-logo.png",
-    "alt": ""
+    "alt": "Logo de nyxpert"
   },
   {
     "src": "images/logo-rollaction-nuevo.png",
-    "alt": ""
+    "alt": "Logo de System Roll Action"
   },
   {
     "src": "images/lucanni-logo.png",
-    "alt": ""
+    "alt": "Logo de Lucanni"
   },
   {
     "src": "images/thuya-logo.jfif",
-    "alt": ""
+    "alt": "Logo de Thuya"
   }
 ]
 
