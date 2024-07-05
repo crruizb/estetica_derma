@@ -1,0 +1,313 @@
+---
+import "@/styles/globals.css";
+import Logo from "@/components/Logo.astro";
+import { CarouselWrapper } from "@/components/ui/CarouselWrapper";
+import { NavMenu } from "@/components/ui/NavMenu";
+import TitlePage from "@/components/TitlePage.astro";
+import Flower from "@/components/icons/flower-tulip-svgrepo-com.svg";
+import Face from "@/components/icons/girl-face-svgrepo-com.svg";
+import Body from "@/components/icons/body-svgrepo-com.svg";
+import Service from "@/components/Service.astro";
+import MapWrapper from "@/components/MapWrapper.astro";
+import Gallery from "@/components/Gallery.astro";
+import NavMobile from "@/components/NavMobile";
+import InstagramIcon from "@/components/icons/InstagramIcon.astro";
+import WhatsAppButton from "@/components/WhatsAppButton.astro";
+import Modal from "@/components/Modal";
+import FirmasLogos from "@/components/FirmasLogos";
+import CookiesBanner from "@/components/CookiesBanner";
+import Footer from "@/components/Footer.astro";
+import { getLangFromUrl, useTranslations } from "@/i18n/utils";
+import LanguageSelector from "@/components/LanguageSelector";
+import { ui, defaultLang } from "@/i18n/ui";
+
+const images = [
+    {
+        path: "./images/Limpieza-facial-profunda.jpg",
+        alt: "Limpieza facial profunda",
+    },
+    {
+        path: "./images/beauty-face-massage-56884.jpg",
+        alt: "Belleza masaje de cara",
+    },
+    {
+        path: "./images/7eb0dcf310238450490b27502631cb48.jpg",
+        alt: "Masaje de chocolate",
+    },
+];
+
+const images2 = [
+    {
+        path: "./images/Limpieza-facial-profunda.jpg",
+        alt: "Limpieza facial profunda",
+    },
+    {
+        path: "./images/beauty-face-massage-56884.jpg",
+        alt: "Belleza masaje de cara",
+    },
+    {
+        path: "./images/7eb0dcf310238450490b27502631cb48.jpg",
+        alt: "Masaje de chocolate",
+    },
+    {
+        path: "./images/estetica-facial-barcelona-maxilodexeus.jpg",
+        alt: "Cara de mujer maxilofacial",
+    },
+    {
+        path: "./images/medicina-estetica-mujer-1024x492.jpg",
+        alt: "Mujer haciendose tratamiento de estetica",
+    },
+];
+
+export async function getStaticPaths() {
+    const pages = [
+        {
+            lang: "en",
+        },
+        {
+            lang: "de",
+        },
+        {
+            lang: "fr",
+        },
+        {
+            lang: "es",
+        },
+        {
+            lang: "ca",
+        },
+    ];
+    return pages.map(({ lang }) => {
+        return {
+            params: { lang },
+        };
+    });
+}
+
+let { lang } = Astro.params;
+const langCast = lang as keyof typeof ui;
+const t = useTranslations(langCast);
+---
+
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="description"
+            content="Estetica Derma - Centro de estética facial, corporal y SPA"
+        />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <meta name="generator" content={Astro.generator} />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Mr+De+Haviland&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            rel="stylesheet"
+            href="https://unpkg.com/leaflet/dist/leaflet.css"
+        />
+        <script src="https://unpkg.com/leaflet/dist/leaflet.js" defer></script>
+        <title>Estetica Derma</title>
+    </head>
+    <body>
+        <Modal title="Bono regalo" client:load>
+            <p class="text-sm lg:text-lg font-inter">{t("popup.bono")}</p>
+            <p class="text-sm lg:text-lg font-inter">
+                <a class="text-rose-400" href="https://wa.me/34691310652"
+                    >Contacta con nosotros</a
+                > o ven a vernos para más información!
+            </p>
+        </Modal>
+        <main class="flex flex-col items-center">
+            <section
+                class="hidden lg:flex lg:relative flex-col-reverse justify-between lg:flex-col"
+            >
+                <div class="opacity-50 w-full">
+                    <CarouselWrapper images={images} client:load />
+                </div>
+                <nav
+                    class="flex justify-around items-center px-6 lg:absolute lg:top-[0.1rem] lg:right-1/2 lg:translate-x-1/2 lg:translate-y-1/2 lg:flex py-2 mt-2 gap-8"
+                >
+                    <Logo />
+                    <NavMenu client:visible />
+                    <InstagramIcon />
+                    <LanguageSelector client:load />
+                </nav>
+            </section>
+
+            <nav
+                class="lg:hidden sticky top-0 bg-rose-50 shadow w-full z-[99999] flex justify-around items-center p-4 gap-4"
+            >
+                <Logo />
+                <InstagramIcon />
+                <NavMobile client:visible />
+            </nav>
+            <div class="lg:hidden w-full">
+                <CarouselWrapper images={images} client:load />
+            </div>
+
+            <section
+                id="home"
+                class="flex flex-col items-center justify-center px-10 mt-10"
+            >
+                <TitlePage title="Bienvenido a" subtitle="ESTÉTICA DERMA" />
+                <p
+                    class="mt-2 font-inter font-light text-xl text-center lg:text-2xl"
+                >
+                    En Estética Derma encontrarás técnicas de terapia y
+                    bienestar. Masajes corporales, tratamientos faciales,
+                    manicuras, pedicuras, depilaciones, permanente de pestañas,
+                    todas nuestras técnicas basadas en estética de vanguardia.
+                </p>
+                <p
+                    class="mt-2 font-inter font-light text-xl text-center lg:text-2xl lg:text-2xl"
+                >
+                    Realizamos tratamientos reductores con aparatologia de
+                    última tecnología. En nuestro centro encontrarás una amplia
+                    selección de tratamientos y productos de primera calidad,
+                    siempre adaptados a ti.
+                </p>
+                <p
+                    class="mt-2 font-inter font-light text-xl text-center lg:text-2xl"
+                >
+                    Ven a Derma, relájate y déjate mimar.
+                </p>
+            </section>
+            <section
+                id="servicios"
+                class="flex flex-col sm:flex-row justify-around w-full mt-12 py-12 px-10 gap-28"
+            >
+                <Service
+                    src={Flower.src}
+                    alt="Flower icon"
+                    title="TÉCNICAS SPA"
+                    items={[
+                        "Ayurveda",
+                        "Masaje geotermal (Chakra Stone Massage)",
+                        "Magic honey (Trac. dulce, intenso, envolvente)",
+                        "Tratamiento a la turba",
+                        "Oil Treatment (Mermelada de aceite de oliva)",
+                        "Chocolate massage (El masaje que te mima)",
+                        "Kerala (Craneal massage)",
+                        "Scrub (Masaje con sales del mar muerto)",
+                        "Tratamiento manteca de karité",
+                        "Tibet Treatment",
+                        "Pindasweda Treatment",
+                        "Bamboo Treatment",
+                        "Ritual Candle",
+                    ]}
+                />
+
+                <Service
+                    src={Face.src}
+                    alt="Face icon"
+                    title="ESTÉTICA FACIAL"
+                    items={[
+                        "Limpieza de cutis (incluye labio superior y repaso de cejas)",
+                        "Trac facial (pieles grasas, antiarrugas, oxigenación, etc.)",
+                        "Velo colágeno y ADN marino",
+                        "Luxury Line (caviar)",
+                        "Peeling (enzimático/glicólico)",
+                        "Reinaixença ( Kobido,Shiatsu y Jade )",
+                        "Derma pen ( estimulador de colágeno y elastina)",
+                        "Vitamina C ( iluminador )",
+                        "Radiant Eye ( Contorno ojos )",
+                        "Depilación a la cera caliente",
+                        "Depilación a la cera tibia",
+                        "Depilación eléctrica",
+                        "Depilación láser de diodo (LightSheer)",
+                    ]}
+                />
+
+                <Service
+                    src={Body.src}
+                    alt="Body icon"
+                    title="ESTÉTICA CORPORAL"
+                    items={[
+                        "Quiromasaje (muscular y antiestrés)",
+                        "Drenaje linfático",
+                        "Reflexología",
+                        "Trac celulitis",
+                        "Trac flacidez",
+                        "Trac piernas cansadas",
+                        "Presoterapia Ballancer",
+                        "Alta frecuencia",
+                        "Roll systemic",
+                        "Fangoterapia",
+                        "Algoterapia",
+                        "Pedicuras y manicuras (Trac parafina y trac a la miel)",
+                        "Maderoterapia",
+                    ]}
+                />
+            </section>
+
+            <section
+                id="galeria"
+                class="flex flex-col items-center px-10 mt-10 w-2/3"
+            >
+                <TitlePage title="Mira como trabajamos" subtitle="GALERÍA" />
+                <Gallery images={images2} />
+            </section>
+
+            <FirmasLogos client:load />
+
+            <section id="ubicacion" class="flex flex-col items-center mt-20">
+                <TitlePage title="Estamos aquí" subtitle="NUESTRA UBICACIÓN" />
+                <MapWrapper />
+            </section>
+
+            <section
+                id="contacta"
+                class="flex flex-col sm:flex-row justify-around w-full mt-12 py-0 px-10 mb-24"
+            >
+                <div class="flex flex-col items-center sm:items-start">
+                    <h3 class="text-2xl font-inter font-medium">
+                        SOBRE NOSOTROS
+                    </h3>
+                    <p class="font-inter font-light text-sm lg:text-lg">
+                        DERMA, centro de estética y terápia UNISEX
+                    </p>
+                    <p class="font-inter font-light text-sm lg:text-lg">
+                        ubicada en Hospitalet de Llobregat (Barcelona)
+                    </p>
+                </div>
+                <div
+                    class="flex flex-col mt-6 sm:mt-0 items-center sm:items-start"
+                >
+                    <h3 class="text-2xl font-inter font-medium">HORARIO</h3>
+                    <ul class="font-inter font-light text-sm lg:text-lg">
+                        <li>
+                            Lunes: 16h – 20h<li></li>
+                            <li>Martes – Viernes: 10h – 20h</li>
+                            <li>Sábado: 10h – 14h</li>
+                        </li>
+                    </ul>
+                    <div
+                        class="flex flex-col mt-6 sm:mt-0 items-center sm:items-start"
+                    >
+                        <h3 class="text-2xl font-inter font-medium">
+                            CONTACTO
+                        </h3>
+                        <ul class="font-inter font-light text-sm lg:text-lg">
+                            <li>Avenida Dr. Severo Ochoa 9, bajos</li>
+                            <li>Email: contacto@esteticaderma.com</li>
+                            <li>Teléfono: 934385970 – 691310652</li>
+                        </ul>
+                    </div>
+                </div>
+                <CookiesBanner client:load />
+                <Footer />
+            </section>
+            <WhatsAppButton />
+        </main>
+    </body>
+</html>
