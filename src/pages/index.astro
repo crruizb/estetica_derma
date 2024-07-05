@@ -17,6 +17,8 @@ import Modal from '@/components/Modal';
 import FirmasLogos from '@/components/FirmasLogos'
 import CookiesBanner from '@/components/CookiesBanner';
 import Footer from '@/components/Footer.astro';
+import { useTranslations } from '@/i18n/utils';
+import LanguageSelector from '@/components/LanguageSelector';
 
 
 const images = [
@@ -56,7 +58,22 @@ const images2 = [
     "alt": "Mujer haciendose tratamiento de estetica"
   },
 ]
+
+const lang = Astro.cookies.get('lang')
+console.log(lang)
+let t = useTranslations('en');
+  // const lang = window.localStorage.getItem('lang') ?? "es";
+
+  
+  // console.log(window.localStorage.getItem(lang))
 ---
+
+<!-- <script is:inline>
+  import { useTranslations } from '@/i18n/utils';
+  console.log("Holaaa")
+  console.log(localStorage.getItem("lang"))
+  t = useTranslations('es');
+</script> -->
 
 <!doctype html>
 <html lang="es">
@@ -84,7 +101,7 @@ const images2 = [
 	</head>
 	<body>
     <Modal title='Bono regalo'client:load>
-      <p class="text-sm lg:text-lg font-inter">Regala bienestar y belleza a cualquier ser querido con nuestros bonos regalos. Cualquier tratamiento que tengamos puede ser incluido en ellos.</p>
+      <p class="text-sm lg:text-lg font-inter">{t('popup.bono')}</p>
       <p class="text-sm lg:text-lg font-inter"><a class="text-rose-400" href="https://wa.me/34691310652">Contacta con nosotros</a> o ven a vernos para más información!</p>
     </Modal>
     <main class="flex flex-col items-center">
@@ -96,6 +113,7 @@ const images2 = [
           <Logo />
           <NavMenu client:visible />
           <InstagramIcon />
+          <LanguageSelector client:load/>
         </nav>
       </section>
 
