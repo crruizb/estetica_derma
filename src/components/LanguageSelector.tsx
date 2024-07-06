@@ -56,13 +56,10 @@ export default function LanguageSelector({lang}: Props) {
 
   const saveLang = (img: ImageMetadata, lang: string) => {
     setSelectedLang(img);
-    saveCookie(img)
+    setCookie('lang', img, { path: '/' })
     navigate("/" + lang)
   };
 
-  function saveCookie(img: ImageMetadata) {
-    return setCookie('lang', img)
-  }
 
   return (
           <DropdownMenu>
