@@ -41,7 +41,7 @@ export const ui_fr = {
   'services.facial.11': "Epilation à la cire chaude",
   'services.facial.12': "Épilation électrique",
   'services.facial.13': "Épilation au laser à diode (LightSheer)",
-  'services.body.title': "ESTHÉTIQUE DU VISAGE",
+  'services.body.title': "ESTHÉTIQUE DU CORPS",
   'services.body.1': "Chiromassage (musculaire et anti-stress)",
   'services.body.2': "Drainage lymphatique",
   'services.body.3': "Réflexologie",

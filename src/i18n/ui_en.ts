@@ -41,7 +41,7 @@ export const ui_en = {
   'services.facial.11': "Warm wax hair removal",
   'services.facial.12': "Electric hair removal",
   'services.facial.13': "Diode laser hair removal (LightSheer)",
-  'services.body.title': "FACIAL AESTHETICS",
+  'services.body.title': "BODY AESTHETICS",
   'services.body.1': "Chiromassage (muscle and anti-stress)",
   'services.body.2': "Lymphatic drainage",
   'services.body.3': "Reflexology",

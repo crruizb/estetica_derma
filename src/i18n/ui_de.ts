@@ -41,7 +41,7 @@ export const ui_de = {
   'services.facial.11': "Haarentfernung mit Warmwachs",
   'services.facial.12': "Elektrische Haarentfernung",
   'services.facial.13': "Diodenlaser-Haarentfernung (LightSheer)",
-  'services.body.title': "GESICHTSÄSTHETIK",
+  'services.body.title': "KÖRPERÄSTHETIK",
   'services.body.1': "Chiromassage (Muskel- und Antistress)",
   'services.body.2': "Lymphdrainage",
   'services.body.3': "Reflexzonenmassage",

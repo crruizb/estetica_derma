@@ -41,7 +41,7 @@ export const ui_es = {
   'services.facial.11': "Depilación a la cera tibia",
   'services.facial.12': "Depilación eléctrica",
   'services.facial.13': "Depilación láser de diodo (LightSheer)",
-  'services.body.title': "ESTÉTICA FACIAL",
+  'services.body.title': "ESTÉTICA CORPORAL",
   'services.body.1': "Quiromasaje (muscular y antiestrés)",
   'services.body.2': "Drenaje linfático",
   'services.body.3': "Reflexología",
