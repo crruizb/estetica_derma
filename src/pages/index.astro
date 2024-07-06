@@ -83,7 +83,7 @@ export async function getStaticPaths() {
   });
 }
 
-const t = useTranslations("es");
+let t = useTranslations("es");
 ---
 
 <html lang="es">
@@ -112,7 +112,7 @@ const t = useTranslations("es");
     <script src="https://unpkg.com/leaflet/dist/leaflet.js" defer></script>
     <title>Estetica Derma</title>
   </head>
-  <body>
+  <body data-translation={t}>
     <Modal title={t("popup.bono.regalo")} client:load>
       <p class="text-sm lg:text-lg font-inter">{t("popup.bono")}</p>
       <p class="text-sm lg:text-lg font-inter">

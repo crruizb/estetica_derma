@@ -11,7 +11,6 @@ import de from './icons/germany.svg'
 import es from './icons/spain.svg'
 import en from './icons/uk.svg'
 import fr from './icons/france.svg'
-import {useCookies} from 'react-cookie'
 import { navigate } from "astro/virtual-modules/transitions-router.js"
 
 interface Props {
@@ -20,43 +19,34 @@ interface Props {
 
 export default function LanguageSelector({lang}: Props) {
   const [selectedLang, setSelectedLang] = useState(es)
-  const [cookies, setCookie] = useCookies(['lang'])
 
   useEffect(() => {
-    let langMd = cookies.lang as ImageMetadata;
-    if (langMd === undefined || langMd === null) {
+    let langMd: ImageMetadata
       switch (lang) {
         case "es":
           langMd = es
-          setCookie('lang', es)
           break;
         case "ca":
           langMd = ca
-          setCookie('lang', ca)
           break;
         case "en":
           langMd = en
-          setCookie('lang', en)
           break;
         case "de":
           langMd = de
-          setCookie('lang', de)
           break;
         case "fr": 
           langMd = fr
-          setCookie('lang', fr)
           break;
       
         default:
           langMd = es;
       }
-    }
     setSelectedLang(langMd)
   }, [selectedLang]);
 
   const saveLang = (img: ImageMetadata, lang: string) => {
     setSelectedLang(img);
-    setCookie('lang', img, { path: '/' })
     navigate("/" + lang)
   };
 
