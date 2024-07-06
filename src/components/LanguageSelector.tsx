@@ -61,9 +61,9 @@ export default function LanguageSelector({lang}: Props) {
   };
 
   return (
-    <DropdownMenu>
+          <DropdownMenu>
     <DropdownMenuTrigger><img src={selectedLang.src} alt="Selected language icon" /></DropdownMenuTrigger>
-    <DropdownMenuContent>
+    <DropdownMenuContent className="min-w-8">
       <DropdownMenuItem onClick={() => saveLang(es, "es")}>
         <a href={`/es`}><img src={es.src} alt="Spanish flag" /></a>
       </DropdownMenuItem>
@@ -80,6 +80,7 @@ export default function LanguageSelector({lang}: Props) {
         <a href={`/fr`}><img src={fr.src} alt="French flag" /></a>
       </DropdownMenuItem>
     </DropdownMenuContent>
+
   </DropdownMenu>
   )
 }

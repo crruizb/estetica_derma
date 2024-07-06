@@ -23,38 +23,38 @@ import { ui } from "@/i18n/ui";
 
 const images = [
     {
-        path: "./images/Limpieza-facial-profunda.jpg",
+        path: "../images/Limpieza-facial-profunda.jpg",
         alt: "Limpieza facial profunda",
     },
     {
-        path: "./images/beauty-face-massage-56884.jpg",
+        path: "../images/beauty-face-massage-56884.jpg",
         alt: "Belleza masaje de cara",
     },
     {
-        path: "./images/7eb0dcf310238450490b27502631cb48.jpg",
+        path: "../images/7eb0dcf310238450490b27502631cb48.jpg",
         alt: "Masaje de chocolate",
     },
 ];
 
 const images2 = [
     {
-        path: "./images/Limpieza-facial-profunda.jpg",
+        path: "../images/Limpieza-facial-profunda.jpg",
         alt: "Limpieza facial profunda",
     },
     {
-        path: "./images/beauty-face-massage-56884.jpg",
+        path: "../images/beauty-face-massage-56884.jpg",
         alt: "Belleza masaje de cara",
     },
     {
-        path: "./images/7eb0dcf310238450490b27502631cb48.jpg",
+        path: "../images/7eb0dcf310238450490b27502631cb48.jpg",
         alt: "Masaje de chocolate",
     },
     {
-        path: "./images/estetica-facial-barcelona-maxilodexeus.jpg",
+        path: "../images/estetica-facial-barcelona-maxilodexeus.jpg",
         alt: "Cara de mujer maxilofacial",
     },
     {
-        path: "./images/medicina-estetica-mujer-1024x492.jpg",
+        path: "../images/medicina-estetica-mujer-1024x492.jpg",
         alt: "Mujer haciendose tratamiento de estetica",
     },
 ];
@@ -145,11 +145,12 @@ const t = useTranslations(langCast);
             </section>
 
             <nav
-                class="lg:hidden sticky top-0 bg-rose-50 shadow w-full z-[99999] flex justify-around items-center p-4 gap-4"
+                class="lg:hidden sticky top-0 bg-rose-50 shadow w-full z-20 flex justify-around items-center p-4 gap-4"
             >
                 <Logo />
                 <InstagramIcon />
                 <NavMobile client:visible />
+                <LanguageSelector lang={lang} client:load />
             </nav>
             <div class="lg:hidden w-full">
                 <CarouselWrapper images={images} client:load />
