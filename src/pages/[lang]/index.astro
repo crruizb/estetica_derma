@@ -17,7 +17,7 @@ import Modal from "@/components/Modal";
 import FirmasLogos from "@/components/FirmasLogos";
 import CookiesBanner from "@/components/CookiesBanner";
 import Footer from "@/components/Footer.astro";
-import { getLangFromUrl, useTranslations } from "@/i18n/utils";
+import { useTranslations } from "@/i18n/utils";
 import LanguageSelector from "@/components/LanguageSelector";
 import { ui } from "@/i18n/ui";
 
@@ -112,7 +112,8 @@ const t = useTranslations(langCast);
       rel="stylesheet"
     />
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js" defer></script>
+    <script is:inline src="https://unpkg.com/leaflet/dist/leaflet.js" defer
+    ></script>
     <title>Estetica Derma</title>
   </head>
   <body>
