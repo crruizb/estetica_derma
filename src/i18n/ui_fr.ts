@@ -73,5 +73,12 @@ export const ui_fr = {
   "about.contact.p3": "Téléphone : 934385970 – 691310652",
   "contact": "Contact",
   "empresa": "Entreprise",
-  "servicios": "Prestations de service"
+  "servicios": "Prestations de service",
+  "cookies.title": "Nous utilisons des cookies",
+  "cookies.p1": "Nous utilisons des cookies pour vous garantir la meilleure expérience sur notre site Web. Pour plus d'informations sur la façon dont nous utilisons les cookies, veuillez consulter notre politique en matière de cookies.",
+  "cookies.click": "En cliquant sur ",
+  "cookies.accept": "Accepter",
+  "cookies.usage": ", vous acceptez notre utilisation des cookies.",
+  "cookies.read_more": "Lire plus.",
+  "cookies.decline": "Déclin"
 } as const;

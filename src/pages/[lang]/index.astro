@@ -1,25 +1,25 @@
 ---
 import "@/styles/globals.css";
-import Logo from "@/components/Logo.astro";
-import { CarouselWrapper } from "@/components/ui/CarouselWrapper";
-import { NavMenu } from "@/components/ui/NavMenu";
-import TitlePage from "@/components/TitlePage.astro";
-import Flower from "@/components/icons/flower-tulip-svgrepo-com.svg";
-import Face from "@/components/icons/girl-face-svgrepo-com.svg";
-import Body from "@/components/icons/body-svgrepo-com.svg";
-import Service from "@/components/Service.astro";
-import MapWrapper from "@/components/MapWrapper.astro";
-import Gallery from "@/components/Gallery.astro";
-import NavMobile from "@/components/NavMobile";
-import InstagramIcon from "@/components/icons/InstagramIcon.astro";
-import WhatsAppButton from "@/components/WhatsAppButton.astro";
-import Modal from "@/components/Modal";
-import FirmasLogos from "@/components/FirmasLogos";
-import CookiesBanner from "@/components/CookiesBanner";
-import Footer from "@/components/Footer.astro";
-import { useTranslations } from "@/i18n/utils";
-import LanguageSelector from "@/components/LanguageSelector";
-import { ui } from "@/i18n/ui";
+import Logo from "../../components/Logo.astro";
+import { CarouselWrapper } from "../../components/ui/CarouselWrapper";
+import { NavMenu } from "../../components/ui/NavMenu";
+import TitlePage from "../../components/TitlePage.astro";
+import Flower from "../../components/icons/flower-tulip-svgrepo-com.svg";
+import Face from "../../components/icons/girl-face-svgrepo-com.svg";
+import Body from "../../components/icons/body-svgrepo-com.svg";
+import Service from "../../components/Service.astro";
+import MapWrapper from "../../components/MapWrapper.astro";
+import Gallery from "../../components/Gallery.astro";
+import NavMobile from "../../components/NavMobile";
+import InstagramIcon from "../../components/icons/InstagramIcon.astro";
+import WhatsAppButton from "../../components/WhatsAppButton.astro";
+import Modal from "../../components/Modal";
+import FirmasLogos from "../../components/FirmasLogos";
+import CookiesBanner from "../../components/CookiesBanner";
+import Footer from "../../components/Footer.astro";
+import { useTranslations } from "../../i18n/utils";
+import LanguageSelector from "../../components/LanguageSelector";
+import { ui } from "../../i18n/ui";
 
 const images = [
   {
@@ -56,6 +56,29 @@ const images2 = [
   {
     path: "../images/medicina-estetica-mujer-1024x492.jpg",
     alt: "Mujer haciendose tratamiento de estetica",
+  },
+];
+
+const logos = [
+  {
+    src: "../images/ballancer-platinum-logo-2.png",
+    alt: "Logo de Ballancer",
+  },
+  {
+    src: "../images/nyxpert-logo.png",
+    alt: "Logo de nyxpert",
+  },
+  {
+    src: "../images/logo-rollaction-nuevo.png",
+    alt: "Logo de System Roll Action",
+  },
+  {
+    src: "../images/lucanni-logo.png",
+    alt: "Logo de Lucanni",
+  },
+  {
+    src: "../images/thuya-logo.jfif",
+    alt: "Logo de Thuya",
   },
 ];
 
@@ -267,7 +290,7 @@ const t = useTranslations(langCast);
         <Gallery images={images2} />
       </section>
 
-      <FirmasLogos title={t("firmas.title")} client:load />
+      <FirmasLogos title={t("firmas.title")} images={logos} client:load />
 
       <section id="ubicacion" class="flex flex-col items-center mt-20">
         <TitlePage
@@ -311,7 +334,19 @@ const t = useTranslations(langCast);
           </ul>
         </div>
       </section>
-      <CookiesBanner client:load />
+      <CookiesBanner
+        client:load
+        title={t("cookies.title")}
+        p1={t("cookies.p1")}
+        click={t("cookies.click")}
+        acceptText={t("cookies.accept")}
+        usage={t("cookies.usage")}
+        readMore={t("cookies.read_more")}
+        declineText={t("cookies.decline")}
+        demo={false}
+        onAcceptCallback={() => {}}
+        onDeclineCallback={() => {}}
+      />
     </main>
     <Footer
       subtitle={t("logo.subtitle")}
