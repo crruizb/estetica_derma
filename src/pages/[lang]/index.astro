@@ -19,7 +19,7 @@ import CookiesBanner from "@/components/CookiesBanner";
 import Footer from "@/components/Footer.astro";
 import { getLangFromUrl, useTranslations } from "@/i18n/utils";
 import LanguageSelector from "@/components/LanguageSelector";
-import { ui, defaultLang } from "@/i18n/ui";
+import { ui } from "@/i18n/ui";
 
 const images = [
     {
@@ -123,8 +123,8 @@ const t = useTranslations(langCast);
             <p class="text-sm lg:text-lg font-inter">{t("popup.bono")}</p>
             <p class="text-sm lg:text-lg font-inter">
                 <a class="text-rose-400" href="https://wa.me/34691310652"
-                    >Contacta con nosotros</a
-                > o ven a vernos para más información!
+                    >{t("popup.contact")}</a
+                > {t("popup.more_info")}
             </p>
         </Modal>
         <main class="flex flex-col items-center">
@@ -140,7 +140,7 @@ const t = useTranslations(langCast);
                     <Logo />
                     <NavMenu client:visible />
                     <InstagramIcon />
-                    <LanguageSelector client:load />
+                    <LanguageSelector lang={lang} client:load />
                 </nav>
             </section>
 
@@ -280,20 +280,15 @@ const t = useTranslations(langCast);
                         ubicada en Hospitalet de Llobregat (Barcelona)
                     </p>
                 </div>
-                <div
-                    class="flex flex-col mt-6 sm:mt-0 items-center sm:items-start"
-                >
+                <div class="flex flex-col mt-6 sm:mt-0 items-center sm:items-start">
                     <h3 class="text-2xl font-inter font-medium">HORARIO</h3>
                     <ul class="font-inter font-light text-sm lg:text-lg">
-                        <li>
-                            Lunes: 16h – 20h<li></li>
-                            <li>Martes – Viernes: 10h – 20h</li>
-                            <li>Sábado: 10h – 14h</li>
-                        </li>
+                        <li>Lunes: 16h – 20h</li>
+                        <li>Martes – Viernes: 10h – 20h</li>
+                        <li>Sábado: 10h – 14h</li>
                     </ul>
-                    <div
-                        class="flex flex-col mt-6 sm:mt-0 items-center sm:items-start"
-                    >
+                  </div>
+                    <div class="flex flex-col mt-6 sm:mt-0 items-center sm:items-start">
                         <h3 class="text-2xl font-inter font-medium">
                             CONTACTO
                         </h3>
@@ -305,8 +300,8 @@ const t = useTranslations(langCast);
                     </div>
                 </div>
                 <CookiesBanner client:load />
-                <Footer />
             </section>
+            <Footer />
             <WhatsAppButton />
         </main>
     </body>
