@@ -1,7 +1,15 @@
 import { useState } from "react";
-import { routes } from "../routes";
 
-export default function Header() {
+interface Route {
+  label: string
+  href: string
+}
+
+interface Props {
+  routes: Route[]
+}
+
+export default function Header({routes}: Props) {
   const [isNavOpen, setIsNavOpen] = useState(false);
 
   return (

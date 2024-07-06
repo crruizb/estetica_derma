@@ -23,10 +23,14 @@ const images = [
   }
 ]
 
-const Component = () => {
+interface Props {
+  title: string
+}
+
+const Component = ({title}: Props) => {
     return (
       <>
-      <h2 className="my-8 sm:m-16 lg:mb-16 text-4xl sm:text-5xl font-thin tracking-tight leading-tight text-center">Firmas con las que trabajamos</h2>
+      <h2 className="my-8 sm:m-16 lg:mb-16 text-4xl sm:text-5xl font-thin tracking-tight leading-tight text-center">{title}</h2>
       <SliderNumber images={images} />
       
       </>

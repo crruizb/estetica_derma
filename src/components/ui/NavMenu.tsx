@@ -8,9 +8,17 @@ import {
   NavigationMenuTrigger,
   NavigationMenuViewport,
 } from "@/components/ui/navigation-menu";
-import {routes} from '../../routes'
+interface Route {
+  label: string
+  href: string
+}
 
-export function NavMenu() {
+interface Props {
+  routes: Route[]
+}
+
+
+export function NavMenu({routes}: Props) {
   return (
     <NavigationMenu className="hidden lg:flex gap-16 justify-center items-center lg:text-sm xl:text-lg">
       {
