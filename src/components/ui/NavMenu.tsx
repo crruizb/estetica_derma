@@ -1,21 +1,22 @@
 import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuIndicator,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-  NavigationMenuViewport,
+  NavigationMenu
 } from "@/components/ui/navigation-menu";
-import {routes} from '../../routes'
+interface Route {
+  label: string
+  href: string
+}
 
-export function NavMenu() {
+interface Props {
+  routes: Route[]
+}
+
+
+export function NavMenu({routes}: Props) {
   return (
     <NavigationMenu className="hidden lg:flex gap-16 justify-center items-center lg:text-sm xl:text-lg">
       {
         routes.map((route, index) => (
-          <div>
+          <div key={route.label}>
             <div className="hover:scale-125 hover:transition hover:duration-1000 duration-1000">
               <a className="font-bold" key={index} href={route.href}>{route.label}</a>
             </div>

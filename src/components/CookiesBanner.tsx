@@ -3,7 +3,19 @@ import { Button } from "./ui/button";
 import { cn } from "@/lib/utils"
 import { useState, useEffect } from "react";
 
-export default function CookieConsent({ demo = false, onAcceptCallback = () => { }, onDeclineCallback = () => { } }) {
+interface Props {
+  title: string
+  p1: string
+  click: string
+  acceptText: string
+  usage: string
+  readMore: string
+  declineText: string
+  demo: boolean
+  onAcceptCallback: Function
+  onDeclineCallback: Function
+}
+export default function CookiesBanner({ title, p1, click, acceptText, usage, readMore, declineText, demo , onAcceptCallback, onDeclineCallback } : Props) {
   const [isOpen, setIsOpen] = useState(false);
   const [hide, setHide] = useState(false);
 
@@ -46,22 +58,22 @@ export default function CookieConsent({ demo = false, onAcceptCallback = () => {
           <div className="bg-gray-100 rounded-md m-2">
               <div className="grid gap-2">
                   <div className="border-b border-border border-gray-300 h-14 flex items-center justify-between p-4">
-                      <h1 className="text-lg font-medium">Usamos cookies</h1>
+                      <h1 className="text-lg font-medium">{title}</h1>
                       <CookieIcon className="h-[1.2rem] w-[1.2rem]" />
                   </div>
                   <div className="p-4">
                       <p className="text-sm font-normal">
-                      Utilizamos cookies para garantizar que obtenga la mejor experiencia en nuestro sitio web. Para obtener más información sobre cómo utilizamos las cookies, consulte nuestra política de cookies.
+                      {p1}
                           <br />
                           <br />
-                          <span className="text-xs">Al clicar en "<span className="font-medium opacity-80">Aceptar</span>", usted acepta nuestro uso de cookies.</span>
+                          <span className="text-xs">{click}<span className="font-medium opacity-80">{acceptText}</span>{usage}</span>
                           <br />
-                          <a href="#" className="text-xs underline">Leer mas.</a>
+                          <a href="#" className="text-xs underline">{readMore}</a>
                       </p>
                   </div>
                   <div className="flex gap-2 p-4 py-5 border-t border-border bg-background/20">
-                      <Button onClick={accept} className="w-full bg-rose-400 hover:bg-rose-500">Aceptar</Button>
-                      <Button onClick={decline} className="w-full bg-white hover:bg-gray-300" variant="secondary">Rechazar</Button>
+                      <Button onClick={accept} className="w-full bg-rose-400 hover:bg-rose-500">{acceptText}</Button>
+                      <Button onClick={decline} className="w-full bg-white hover:bg-gray-300" variant="secondary">{declineText}</Button>
                   </div>
               </div>
           </div>

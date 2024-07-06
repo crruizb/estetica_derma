@@ -1,82 +1,83 @@
 ---
 import "@/styles/globals.css";
-import Logo from "../components/Logo.astro";
-import { CarouselWrapper } from "../components/ui/CarouselWrapper";
-import { NavMenu } from "../components/ui/NavMenu";
-import TitlePage from "../components/TitlePage.astro";
-import Flower from "../components/icons/flower-tulip-svgrepo-com.svg";
-import Face from "../components/icons/girl-face-svgrepo-com.svg";
-import Body from "../components/icons/body-svgrepo-com.svg";
-import Service from "../components/Service.astro";
-import MapWrapper from "../components/MapWrapper.astro";
-import Gallery from "../components/Gallery.astro";
-import NavMobile from "../components/NavMobile";
-import InstagramIcon from "../components/icons/InstagramIcon.astro";
-import WhatsAppButton from "../components/WhatsAppButton.astro";
-import Modal from "../components/Modal";
-import FirmasLogos from "../components/FirmasLogos";
-import CookiesBanner from "../components/CookiesBanner";
-import Footer from "../components/Footer.astro";
-import { useTranslations } from "../i18n/utils";
-import LanguageSelector from "../components/LanguageSelector";
+import Logo from "../../components/Logo.astro";
+import { CarouselWrapper } from "../../components/ui/CarouselWrapper";
+import { NavMenu } from "../../components/ui/NavMenu";
+import TitlePage from "../../components/TitlePage.astro";
+import Flower from "../../components/icons/flower-tulip-svgrepo-com.svg";
+import Face from "../../components/icons/girl-face-svgrepo-com.svg";
+import Body from "../../components/icons/body-svgrepo-com.svg";
+import Service from "../../components/Service.astro";
+import MapWrapper from "../../components/MapWrapper.astro";
+import Gallery from "../../components/Gallery.astro";
+import NavMobile from "../../components/NavMobile";
+import InstagramIcon from "../../components/icons/InstagramIcon.astro";
+import WhatsAppButton from "../../components/WhatsAppButton.astro";
+import Modal from "../../components/Modal";
+import FirmasLogos from "../../components/FirmasLogos";
+import CookiesBanner from "../../components/CookiesBanner";
+import Footer from "../../components/Footer.astro";
+import { useTranslations } from "../../i18n/utils";
+import LanguageSelector from "../../components/LanguageSelector";
+import { ui } from "../../i18n/ui";
 
 const images = [
   {
-    path: "./images/Limpieza-facial-profunda.jpg",
+    path: "../images/Limpieza-facial-profunda.jpg",
     alt: "Limpieza facial profunda",
   },
   {
-    path: "./images/beauty-face-massage-56884.jpg",
+    path: "../images/beauty-face-massage-56884.jpg",
     alt: "Belleza masaje de cara",
   },
   {
-    path: "./images/7eb0dcf310238450490b27502631cb48.jpg",
+    path: "../images/7eb0dcf310238450490b27502631cb48.jpg",
     alt: "Masaje de chocolate",
   },
 ];
 
 const images2 = [
   {
-    path: "./images/Limpieza-facial-profunda.jpg",
+    path: "../images/Limpieza-facial-profunda.jpg",
     alt: "Limpieza facial profunda",
   },
   {
-    path: "./images/beauty-face-massage-56884.jpg",
+    path: "../images/beauty-face-massage-56884.jpg",
     alt: "Belleza masaje de cara",
   },
   {
-    path: "./images/7eb0dcf310238450490b27502631cb48.jpg",
+    path: "../images/7eb0dcf310238450490b27502631cb48.jpg",
     alt: "Masaje de chocolate",
   },
   {
-    path: "./images/estetica-facial-barcelona-maxilodexeus.jpg",
+    path: "../images/estetica-facial-barcelona-maxilodexeus.jpg",
     alt: "Cara de mujer maxilofacial",
   },
   {
-    path: "./images/medicina-estetica-mujer-1024x492.jpg",
+    path: "../images/medicina-estetica-mujer-1024x492.jpg",
     alt: "Mujer haciendose tratamiento de estetica",
   },
 ];
 
 const logos = [
   {
-    src: "images/ballancer-platinum-logo-2.png",
+    src: "../images/ballancer-platinum-logo-2.png",
     alt: "Logo de Ballancer",
   },
   {
-    src: "images/nyxpert-logo.png",
+    src: "../images/nyxpert-logo.png",
     alt: "Logo de nyxpert",
   },
   {
-    src: "images/logo-rollaction-nuevo.png",
+    src: "../images/logo-rollaction-nuevo.png",
     alt: "Logo de System Roll Action",
   },
   {
-    src: "images/lucanni-logo.png",
+    src: "../images/lucanni-logo.png",
     alt: "Logo de Lucanni",
   },
   {
-    src: "images/thuya-logo.jfif",
+    src: "../images/thuya-logo.jfif",
     alt: "Logo de Thuya",
   },
 ];
@@ -106,7 +107,9 @@ export async function getStaticPaths() {
   });
 }
 
-const t = useTranslations("es");
+let { lang } = Astro.params;
+const langCast = lang as keyof typeof ui;
+const t = useTranslations(langCast);
 ---
 
 <html lang="es">
@@ -136,7 +139,7 @@ const t = useTranslations("es");
     ></script>
     <title>Estetica Derma</title>
   </head>
-  <body data-translation={t}>
+  <body>
     <Modal title={t("popup.bono.regalo")} client:load>
       <p class="text-sm lg:text-lg font-inter">{t("popup.bono")}</p>
       <p class="text-sm lg:text-lg font-inter">
@@ -167,7 +170,7 @@ const t = useTranslations("es");
             client:visible
           />
           <InstagramIcon />
-          <LanguageSelector lang={"es"} client:load />
+          <LanguageSelector lang={lang} client:load />
         </nav>
       </section>
 
@@ -185,7 +188,7 @@ const t = useTranslations("es");
           ]}
           client:visible
         />
-        <LanguageSelector lang={"es"} client:load />
+        <LanguageSelector lang={lang} client:load />
       </nav>
       <div class="lg:hidden w-full">
         <CarouselWrapper images={images} client:load />

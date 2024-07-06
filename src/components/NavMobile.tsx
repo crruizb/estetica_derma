@@ -1,7 +1,15 @@
 import { useState } from "react";
-import { routes } from "../routes";
 
-export default function Header() {
+interface Route {
+  label: string
+  href: string
+}
+
+interface Props {
+  routes: Route[]
+}
+
+export default function Header({routes}: Props) {
   const [isNavOpen, setIsNavOpen] = useState(false);
 
   return (
@@ -39,7 +47,7 @@ export default function Header() {
             <ul className="flex flex-col items-center justify-between min-h-[250px]">
               {
                 routes.map((route) => (
-                  <li className="border-b border-fuchsia-400 my-8 uppercase">
+                  <li key={route.label} className="border-b border-fuchsia-400 my-8 uppercase">
                     <a onClick={() => setIsNavOpen(false)} href={route.href}>{route.label}</a>
                   </li>
                 ))
