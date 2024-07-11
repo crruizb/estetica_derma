@@ -19,6 +19,7 @@ import CookiesBanner from "../components/CookiesBanner";
 import Footer from "../components/Footer.astro";
 import { useTranslations } from "../i18n/utils";
 import LanguageSelector from "../components/LanguageSelector";
+import { SEO } from "astro-seo";
 
 const images = [
   {
@@ -37,23 +38,19 @@ const images = [
 
 const images2 = [
   {
-    path: "./images/Limpieza-facial-profunda.jpg",
+    path: "./images/Limpieza-facial-profunda-resized.jpg",
     alt: "Limpieza facial profunda",
   },
   {
-    path: "./images/beauty-face-massage-56884.jpg",
+    path: "./images/beauty-face-massage-56884-resized.jpg",
     alt: "Belleza masaje de cara",
   },
   {
-    path: "./images/7eb0dcf310238450490b27502631cb48.jpg",
+    path: "./images/7eb0dcf310238450490b27502631cb48-resized.jpg",
     alt: "Masaje de chocolate",
   },
   {
-    path: "./images/estetica-facial-barcelona-maxilodexeus.jpg",
-    alt: "Cara de mujer maxilofacial",
-  },
-  {
-    path: "./images/medicina-estetica-mujer-1024x492.jpg",
+    path: "./images/medicina-estetica-mujer-1024x492-resized.jpg",
     alt: "Mujer haciendose tratamiento de estetica",
   },
 ];
@@ -111,6 +108,13 @@ const t = useTranslations("es");
 
 <html lang="es">
   <head>
+    <SEO
+      title="Estética Derma - Centro de estética facial, corporal y SPA."
+      description="En Estética Derma encontrarás técnicas de terapia y bienestar. Masajes corporales, tratamientos faciales, manicuras, pedicuras, depilaciones, permanente de pestañas, todas nuestras técnicas basadas en estética de vanguardia."
+      extend={{
+        link: [{ rel: "icon", href: "/favicon.ico" }],
+      }}
+    />
     <meta charset="UTF-8" />
     <meta
       name="description"
