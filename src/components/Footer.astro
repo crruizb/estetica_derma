@@ -1,5 +1,6 @@
 ---
-const { subtitle, address, contact, company, services } = Astro.props;
+const { subtitle, address, contact, company, services, cookiesPolicy } =
+  Astro.props;
 ---
 
 <footer class="bg-gray-100 w-full">
@@ -84,14 +85,17 @@ const { subtitle, address, contact, company, services } = Astro.props;
           <h2 class="font-mono font-bold text-zinc-700 text-lg">{company}</h2>
           <ul class="mt-4 grid gap-2 grid-cols-2">
             <li class="flex items-start text-sm">
-              <span></span><a
+              <a
                 class="text-left text-zinc-600 break-words hover:underline hover:text-zinc-800"
-                href="#servicios">{services}</a
+                href="/#servicios">{services}</a
               >
             </li>
-            <!-- <li class="flex items-start text-sm"><span></span><a
+            <li class="flex items-start text-sm">
+              <a
                 class="text-left text-zinc-600 break-words hover:underline hover:text-zinc-800"
-                href="/privacidad">Politica de privacidad</a></li> -->
+                href="/politica-cookies">{cookiesPolicy}</a
+              >
+            </li>
           </ul>
         </div>
       </div>
