@@ -81,5 +81,7 @@ export const ui_ca = {
   "cookies.usage": ", vostè accepta el nostre ús de cookies.",
   "cookies.read_more": "Llegir més.",
   "cookies.decline": "Rebutjar",
-  "cookies_policy": "Política de cookies"
+  "cookies_policy": "Política de cookies",
+  "privacy_policy": "Política de privadesa",
+  "legal_policy": "Avís legal"
 } as const;

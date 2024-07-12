@@ -81,5 +81,7 @@ export const ui_es = {
   "cookies.usage": ", usted acepta nuestro uso de cookies.",
   "cookies.read_more": "Leer mas.",
   "cookies.decline": "Rechazar",
-  "cookies_policy": "Política de cookies"
+  "cookies_policy": "Política de cookies",
+  "privacy_policy": "Política de privacidad",
+  "legal_policy": "Aviso legal"
 } as const;

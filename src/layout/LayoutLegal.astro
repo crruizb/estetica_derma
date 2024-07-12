@@ -1,0 +1,93 @@
+---
+import "@/styles/globals.css";
+import Logo from "../components/Logo.astro";
+import { NavMenu } from "../components/ui/NavMenu";
+import NavMobile from "../components/NavMobile";
+import InstagramIcon from "../components/icons/InstagramIcon.astro";
+import { useTranslations } from "../i18n/utils";
+import Footer from "../components/Footer.astro";
+import WhatsAppButton from "../components/WhatsAppButton.astro";
+
+const t = useTranslations("es");
+---
+
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="description"
+      content="Estetica Derma - Centro de estética facial, corporal y SPA"
+    />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Mr+De+Haviland&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script is:inline src="https://unpkg.com/leaflet/dist/leaflet.js" defer
+    ></script>
+    <title>Estetica Derma</title>
+  </head>
+  <body>
+    <main class="flex flex-col items-center">
+      <section
+        class="hidden lg:flex lg:relative flex-col-reverse justify-between lg:flex-col lg:mb-48"
+      >
+        <nav
+          class="flex justify-around items-center px-6 lg:absolute lg:top-[0.1rem] lg:right-1/2 lg:translate-x-1/2 lg:translate-y-1/2 lg:flex py-2 mt-2 gap-8"
+        >
+          <Logo title="Derma" subtitle={t("logo.subtitle")} />
+          <NavMenu
+            routes={[
+              { label: t("routes.home"), href: "/#home" },
+              { label: t("routes.services"), href: "/#servicios" },
+              { label: t("routes.gallery"), href: "/#galeria" },
+              { label: t("routes.ubication"), href: "/#ubicacion" },
+            ]}
+            client:visible
+          />
+          <InstagramIcon />
+        </nav>
+      </section>
+
+      <nav
+        class="lg:hidden sticky top-0 bg-rose-50 shadow w-full z-20 flex justify-around items-center p-4 gap-4"
+      >
+        <Logo title="Derma" subtitle={t("logo.subtitle")} />
+        <InstagramIcon />
+        <NavMobile
+          routes={[
+            { label: t("routes.home"), href: "/#home" },
+            { label: t("routes.services"), href: "/#servicios" },
+            { label: t("routes.gallery"), href: "/#galeria" },
+            { label: t("routes.ubication"), href: "/#ubicacion" },
+          ]}
+          client:visible
+        />
+      </nav>
+
+      <slot />
+    </main>
+    <Footer
+      subtitle={t("logo.subtitle")}
+      address={t("about.contact.p1")}
+      contact={t("contact")}
+      company={t("empresa")}
+      services={t("servicios")}
+      cookiesPolicy={t("cookies_policy")}
+      privacyPolicy={t("privacy_policy")}
+      legalPolicy={t("legal_policy")}
+    />
+    <WhatsAppButton />
+  </body>
+</html>
