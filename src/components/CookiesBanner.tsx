@@ -68,7 +68,7 @@ export default function CookiesBanner({ title, p1, click, acceptText, usage, rea
                           <br />
                           <span className="text-xs">{click}<span className="font-medium opacity-80">{acceptText}</span>{usage}</span>
                           <br />
-                          <a href="#" className="text-xs underline">{readMore}</a>
+                          <a href="/politica-cookies" className="text-xs underline">{readMore}</a>
                       </p>
                   </div>
                   <div className="flex gap-2 p-4 py-5 border-t border-border bg-background/20">

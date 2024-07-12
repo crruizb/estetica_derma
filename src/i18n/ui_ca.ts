@@ -1,5 +1,5 @@
 export const ui_ca = {
-  'popup.bono.regalo': "Bo regal",
+  'popup.bono.regalo': "Val de regal",
   'popup.bono': 'Regala benestar i bellesa a qualsevol ésser estimat amb els nostres bons regals. Qualsevol tractament que tinguem pot ser inclòs en ells.',
   'popup.contact': 'Contacta amb nosaltres',
   'popup.more_info': "o vine a veure'ns per a més informació!",
@@ -80,5 +80,6 @@ export const ui_ca = {
   "cookies.accept": "Acceptar",
   "cookies.usage": ", vostè accepta el nostre ús de cookies.",
   "cookies.read_more": "Llegir més.",
-  "cookies.decline": "Rebutjar"
+  "cookies.decline": "Rebutjar",
+  "cookies_policy": "Política de cookies"
 } as const;

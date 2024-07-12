@@ -80,5 +80,6 @@ export const ui_en = {
   "cookies.accept": "Accept",
   "cookies.usage": ", you agree to our use of cookies.",
   "cookies.read_more": "Read more.",
-  "cookies.decline": "Decline"
+  "cookies.decline": "Decline",
+  "cookies_policy": "Cookies policy"
 } as const;

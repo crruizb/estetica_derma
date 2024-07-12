@@ -1,0 +1,171 @@
+---
+import "@/styles/globals.css";
+import Logo from "../components/Logo.astro";
+import { NavMenu } from "../components/ui/NavMenu";
+import NavMobile from "../components/NavMobile";
+import InstagramIcon from "../components/icons/InstagramIcon.astro";
+import { useTranslations } from "../i18n/utils";
+import Footer from "../components/Footer.astro";
+import WhatsAppButton from "../components/WhatsAppButton.astro";
+
+const t = useTranslations("es");
+---
+
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="description"
+      content="Estetica Derma - Centro de estética facial, corporal y SPA"
+    />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Mr+De+Haviland&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script is:inline src="https://unpkg.com/leaflet/dist/leaflet.js" defer
+    ></script>
+    <title>Estetica Derma</title>
+  </head>
+  <body>
+    <main class="flex flex-col items-center">
+      <section
+        class="hidden lg:flex lg:relative flex-col-reverse justify-between lg:flex-col lg:mb-48"
+      >
+        <nav
+          class="flex justify-around items-center px-6 lg:absolute lg:top-[0.1rem] lg:right-1/2 lg:translate-x-1/2 lg:translate-y-1/2 lg:flex py-2 mt-2 gap-8"
+        >
+          <Logo title="Derma" subtitle={t("logo.subtitle")} />
+          <NavMenu
+            routes={[
+              { label: t("routes.home"), href: "/#home" },
+              { label: t("routes.services"), href: "/#servicios" },
+              { label: t("routes.gallery"), href: "/#galeria" },
+              { label: t("routes.ubication"), href: "/#ubicacion" },
+            ]}
+            client:visible
+          />
+          <InstagramIcon />
+        </nav>
+      </section>
+
+      <nav
+        class="lg:hidden sticky top-0 bg-rose-50 shadow w-full z-20 flex justify-around items-center p-4 gap-4"
+      >
+        <Logo title="Derma" subtitle={t("logo.subtitle")} />
+        <InstagramIcon />
+        <NavMobile
+          routes={[
+            { label: t("routes.home"), href: "/#home" },
+            { label: t("routes.services"), href: "/#servicios" },
+            { label: t("routes.gallery"), href: "/#galeria" },
+            { label: t("routes.ubication"), href: "/#ubicacion" },
+          ]}
+          client:visible
+        />
+      </nav>
+      <section class="p-12 font-inter">
+        <h1 class="text-3xl">POLÍTICA DE COOKIES</h1>
+        <p class="text-md md:text-lg mb-4">
+          El acceso a este Sitio Web puede implicar la utilización de cookies.
+          Las cookies son pequeñas cantidades de información que se almacenan en
+          el navegador utilizado por cada Usuario —en los distintos dispositivos
+          que pueda utilizar para navegar— para que el servidor recuerde cierta
+          información que posteriormente y únicamente el servidor que la
+          implementó leerá. Las cookies facilitan la navegación, la hacen más
+          amigable, y no dañan el dispositivo de navegación.
+        </p>
+
+        <p class="text-md md:text-lg mb-4">
+          Las cookies son procedimientos automáticos de recogida de información
+          relativa a las preferencias determinadas por el Usuario durante su
+          visita al Sitio Web con el fin de reconocerlo como Usuario, y
+          personalizar su experiencia y el uso del Sitio Web, y pueden también,
+          por ejemplo, ayudar a identificar y resolver errores.
+        </p>
+
+        <p class="text-md md:text-lg mb-4">
+          La información recabada a través de las cookies puede incluir la fecha
+          y hora de visitas al Sitio Web, las páginas visionadas, el tiempo que
+          ha estado en el Sitio Web y los sitios visitados justo antes y después
+          del mismo. Sin embargo, ninguna cookie permite que esta misma pueda
+          contactarse con el número de teléfono del Usuario o con cualquier otro
+          medio de contacto personal. Ninguna cookie puede extraer información
+          del disco duro del Usuario o robar información personal. La única
+          manera de que la información privada del Usuario forme parte del
+          archivo Cookie es que el usuario dé personalmente esa información al
+          servidor.
+        </p>
+
+        <p class="text-md md:text-lg mb-4">
+          Las cookies que permiten identificar a una persona se consideran datos
+          personales. Por tanto, a las mismas les será de aplicación la Política
+          de Privacidad anteriormente descrita. En este sentido, para la
+          utilización de las mismas será necesario el consentimiento del
+          Usuario. Este consentimiento será comunicado, en base a una elección
+          auténtica, ofrecido mediante una decisión afirmativa y positiva, antes
+          del tratamiento inicial, removible y documentado.
+        </p>
+
+        <h2 class="text-2xl">Cookies de redes sociales</h2>
+        <p class="text-md md:text-lg mb-4">
+          Estetica Derma incorpora plugins de redes sociales, que permiten
+          acceder a las mismas a partir del Sitio Web. Por esta razón, las
+          cookies de redes sociales pueden almacenarse en el navegador del
+          Usuario. Los titulares de dichas redes sociales disponen de sus
+          propias políticas de protección de datos y de cookies, siendo ellos
+          mismos, en cada caso, responsables de sus propios ficheros y de sus
+          propias prácticas de privacidad. El Usuario debe referirse a las
+          mismas para informarse acerca de dichas cookies y, en su caso, del
+          tratamiento de sus datos personales. Únicamente a título informativo
+          se indican a continuación los enlaces en los que se pueden consultar
+          dichas políticas de privacidad y/o de cookies:
+        </p>
+
+        <ul class="mb-4">
+          <li class="text-md md:text-lg">
+            Instagram: <a
+              class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+              href="https://help.instagram.com/1896641480634370?ref=ig"
+              >Política de cookies de Instagram</a
+            >
+          </li>
+        </ul>
+
+        <h2 class="text-2xl">Deshabilitar, rechazar y eliminar cookies</h2>
+        <p class="text-md md:text-lg mb-4">
+          El Usuario puede deshabilitar, rechazar y eliminar las cookies —total
+          o parcialmente— instaladas en su dispositivo mediante la configuración
+          de su navegador (entre los que se encuentran, por ejemplo, Chrome,
+          Firefox, Safari, Explorer). En este sentido, los procedimientos para
+          rechazar y eliminar las cookies pueden diferir de un navegador de
+          Internet a otro. En consecuencia, el Usuario debe acudir a las
+          instrucciones facilitadas por el propio navegador de Internet que esté
+          utilizando. En el supuesto de que rechace el uso de cookies —total o
+          parcialmente— podrá seguir usando el Sitio Web, si bien podrá tener
+          limitada la utilización de algunas de las prestaciones del mismo.
+        </p>
+      </section>
+    </main>
+    <Footer
+      subtitle={t("logo.subtitle")}
+      address={t("about.contact.p1")}
+      contact={t("contact")}
+      company={t("empresa")}
+      services={t("servicios")}
+      cookiesPolicy={t("cookies_policy")}
+    />
+    <WhatsAppButton />
+  </body>
+</html>
