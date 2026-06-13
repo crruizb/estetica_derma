@@ -4,15 +4,15 @@
 
 @layer base {
   :root {
-    --color-primary: #B85C4F;
-    --color-primary-dark: #9A4A40;
-    --color-secondary: #D4A574;
-    --color-cream: #F5E9E0;
-    --color-warm-white: #FDFBF9;
-    --color-text: #2C3E33;
-    --color-text-muted: #6B6B6B;
-    --color-accent: #4A6741;
-    --color-border: #F0E6DD;
+    --color-primary: #b5655a;
+    --color-primary-dark: #9a4a40;
+    --color-secondary: #d4a574;
+    --color-cream: #f5e9e0;
+    --color-warm-white: #fdfbf9;
+    --color-text: #3e3e3e;
+    --color-text-muted: #6b6b6b;
+    --color-accent: #4a6741;
+    --color-border: #f0e6dd;
   }
 
   html {
@@ -20,25 +20,30 @@
   }
 
   body {
-    font-family: 'Jost', sans-serif;
+    font-family: "Jost", sans-serif;
     color: var(--color-text);
     background-color: var(--color-warm-white);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'Cormorant Garamond', serif;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Cormorant Garamond", serif;
   }
 }
 
 @layer utilities {
   .font-display {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: "Cormorant Garamond", serif;
   }
 
   .font-body {
-    font-family: 'Jost', sans-serif;
+    font-family: "Jost", sans-serif;
   }
 
   .text-balance {

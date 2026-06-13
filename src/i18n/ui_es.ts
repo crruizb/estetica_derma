@@ -85,9 +85,8 @@ export const ui_es = {
   "about.us.p1": "DERMA, centro de estética y terápia UNISEX",
   "about.us.p2": "ubicada en Hospitalet de Llobregat (Barcelona)",
   "about.horary.title": "HORARIO",
-  "about.horary.p1": "Lunes: 16h – 20h",
-  "about.horary.p2": "Martes – Viernes: 10h – 20h",
-  "about.horary.p3": "Sábado: 10h – 14h",
+  "about.horary.p1": "Martes – Viernes: 10h – 20h",
+  "about.horary.p2": "Sábado: 10h – 14h",
   "about.contact.title": "CONTACTO",
   "about.contact.p1": "Avenida Dr. Severo Ochoa 9, bajos",
   "about.contact.p2": "Email: contacto@esteticaderma.com",
@@ -109,13 +108,13 @@ export const ui_es = {
   "services.show_more": "Ver tratamientos",
   "seo.siteName": "Estética Derma",
   "seo.title":
-    "Estética Derma | Centro de estética facial, corporal y SPA en Barcelona",
+    "Estética Derma | Centro de estética facial, corporal y SPA en Hospitalet de Llobregat",
   "seo.description":
-    "Centro de estética facial, corporal y SPA en Barcelona. Masajes corporales, tratamientos faciales, manicuras, pedicuras, depilaciones y técnicas de vanguardia. ¡Reserva tu cita!",
+    "Centro de estética facial, corporal y SPA en Hospitalet de Llobregat. Masajes corporales, tratamientos faciales, manicuras, pedicuras, depilaciones y técnicas de vanguardia. ¡Reserva tu cita!",
   "seo.keywords":
-    "estética, centro de estética, facial, corporal, SPA, masajes, Barcelona, Hospitalet de Llobregat, manicura, pedicura, depilación",
+    "estética, centro de estética, facial, corporal, SPA, masajes, Hospitalet de Llobregat, manicura, pedicura, depilación",
   "seo.og.title": "Estética Derma - Centro de estética facial, corporal y SPA",
   "seo.og.description":
-    "Descubre nuestros tratamientos de estética facial, corporal y SPA en Barcelona. Bienestar y belleza en un solo espacio.",
+    "Descubre nuestros tratamientos de estética facial, corporal y SPA en Hospitalet de Llobregat. Bienestar y belleza en un solo espacio.",
   "seo.locale": "es_ES",
 } as const;
