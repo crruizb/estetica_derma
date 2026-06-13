@@ -12,28 +12,19 @@ interface Image {
 
 interface Images {
   images: Image[];
+  className?: string;
 }
 
-export function CarouselWrapper({images} : Images) {
+export function CarouselWrapper({ images, className = "h-96 xl:h-[48rem]" }: Images) {
   return (
-    <Carousel 
-      opts={{
-        align: "start",
-        loop: true,
-      }} 
-      plugins={[
-        Autoplay({
-          delay: 3000,
-        })
-      ]}>
-      <CarouselContent>
+    <Carousel className={className}>
+      <CarouselContent className={className}>
         {
           images.map((image) => (
-            <CarouselItem key={image.path}>
-              <div className="h-96 xl:h-[48rem]">
-                <img className={`w-full border-4 border-rose-200 shadow-lg h-96 xl:h-full`} src={image.path} alt={image.alt} />
+            <CarouselItem key={image.path} className={className}>
+              <div className="h-full">
+                <img className="w-full h-full object-cover" src={image.path} alt={image.alt} />
               </div>
-
             </CarouselItem>
           ))
         }

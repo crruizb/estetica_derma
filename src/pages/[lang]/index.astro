@@ -1,12 +1,9 @@
 ---
 import "@/styles/globals.css";
 import Logo from "../../components/Logo.astro";
-import { CarouselWrapper } from "../../components/ui/CarouselWrapper";
 import { NavMenu } from "../../components/ui/NavMenu";
+import { CarouselWrapper } from "../../components/ui/CarouselWrapper";
 import TitlePage from "../../components/TitlePage.astro";
-import Flower from "../../components/icons/flower-tulip-svgrepo-com.svg";
-import Face from "../../components/icons/girl-face-svgrepo-com.svg";
-import Body from "../../components/icons/body-svgrepo-com.svg";
 import Service from "../../components/Service.astro";
 import MapWrapper from "../../components/MapWrapper.astro";
 import Gallery from "../../components/Gallery.astro";
@@ -21,7 +18,7 @@ import { useTranslations } from "../../i18n/utils";
 import LanguageSelector from "../../components/LanguageSelector";
 import { ui } from "../../i18n/ui";
 
-const images = [
+const heroImages = [
   {
     path: "../images/Limpieza-facial-profunda.jpg",
     alt: "Limpieza facial profunda",
@@ -80,21 +77,11 @@ const logos = [
 
 export async function getStaticPaths() {
   const pages = [
-    {
-      lang: "en",
-    },
-    {
-      lang: "de",
-    },
-    {
-      lang: "fr",
-    },
-    {
-      lang: "es",
-    },
-    {
-      lang: "ca",
-    },
+    { lang: "en" },
+    { lang: "de" },
+    { lang: "fr" },
+    { lang: "es" },
+    { lang: "ca" },
   ];
   return pages.map(({ lang }) => {
     return {
@@ -106,9 +93,16 @@ export async function getStaticPaths() {
 let { lang } = Astro.params;
 const langCast = lang as keyof typeof ui;
 const t = useTranslations(langCast);
+
+const navRoutes = [
+  { label: t("routes.home"), href: "#home" },
+  { label: t("routes.services"), href: "#servicios" },
+  { label: t("routes.gallery"), href: "#galeria" },
+  { label: t("routes.ubication"), href: "#ubicacion" },
+];
 ---
 
-<html lang="es">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta
@@ -118,18 +112,6 @@ const t = useTranslations(langCast);
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Mr+De+Haviland&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
-      rel="stylesheet"
-    />
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <script is:inline src="https://unpkg.com/leaflet/dist/leaflet.js" defer
     ></script>
@@ -137,199 +119,206 @@ const t = useTranslations(langCast);
   </head>
   <body>
     <Modal title={t("popup.bono.regalo")} client:load>
-      <p class="text-sm lg:text-lg font-inter">{t("popup.bono")}</p>
-      <p class="text-sm lg:text-lg font-inter">
-        <a class="text-rose-400" href="https://wa.me/34691310652"
+      <p class="font-body text-base md:text-lg leading-relaxed">{t("popup.bono")}</p>
+      <p class="font-body text-base md:text-lg leading-relaxed mt-4">
+        <a class="text-primary font-medium hover:underline" href="https://wa.me/34691310652"
           >{t("popup.contact")}</a
         >
         {t("popup.more_info")}
       </p>
     </Modal>
-    <main class="flex flex-col items-center">
-      <section
-        class="hidden lg:flex lg:relative flex-col-reverse justify-between lg:flex-col"
-      >
-        <div class="opacity-50 w-full">
-          <CarouselWrapper images={images} client:load />
+
+    <header class="fixed top-0 left-0 right-0 z-40 transition-all duration-300 bg-warm-white/95 backdrop-blur-sm shadow-sm">
+      <div class="mx-auto max-w-7xl px-6 lg:px-10">
+        <div class="flex items-center justify-between h-20 lg:h-24">
+          <a href="#home" class="transition-opacity hover:opacity-80">
+            <Logo title="Derma" subtitle={t("logo.subtitle")} />
+          </a>
+
+          <div class="hidden lg:flex items-center gap-8">
+            <NavMenu routes={navRoutes} client:visible />
+            <div class="h-6 w-px bg-brand-border"></div>
+            <InstagramIcon />
+            <LanguageSelector lang={lang} client:load />
+          </div>
+
+          <div class="flex items-center gap-3 lg:hidden">
+            <InstagramIcon />
+            <NavMobile routes={navRoutes} client:visible />
+            <LanguageSelector lang={lang} client:load />
+          </div>
         </div>
-        <nav
-          class="flex justify-around items-center px-6 lg:absolute lg:top-[0.1rem] lg:right-1/2 lg:translate-x-1/2 lg:translate-y-1/2 lg:flex py-2 mt-2 gap-8"
-        >
-          <Logo title="Derma" subtitle={t("logo.subtitle")} />
-          <NavMenu
-            routes={[
-              { label: t("routes.home"), href: "#home" },
-              { label: t("routes.services"), href: "#servicios" },
-              { label: t("routes.gallery"), href: "#galeria" },
-              { label: t("routes.ubication"), href: "#ubicacion" },
-            ]}
-            client:visible
-          />
-          <InstagramIcon />
-          <LanguageSelector lang={lang} client:load />
-        </nav>
-      </section>
-
-      <nav
-        class="lg:hidden sticky top-0 bg-rose-50 shadow w-full z-20 flex justify-around items-center p-4 gap-4"
-      >
-        <Logo title="Derma" subtitle={t("logo.subtitle")} />
-        <InstagramIcon />
-        <NavMobile
-          routes={[
-            { label: t("routes.home"), href: "#home" },
-            { label: t("routes.services"), href: "#servicios" },
-            { label: t("routes.gallery"), href: "#galeria" },
-            { label: t("routes.ubication"), href: "#ubicacion" },
-          ]}
-          client:visible
-        />
-        <LanguageSelector lang={lang} client:load />
-      </nav>
-      <div class="lg:hidden w-full">
-        <CarouselWrapper images={images} client:load />
       </div>
+    </header>
 
+    <main>
       <section
         id="home"
-        class="flex flex-col items-center justify-center px-10 mt-10"
+        class="relative h-[55vh] lg:h-[65vh] flex items-center justify-center overflow-hidden pt-20 lg:pt-24"
       >
-        <TitlePage title={t("home.title")} subtitle={t("home.subtitle")} />
-        <p class="mt-2 font-inter font-light text-xl text-center lg:text-2xl">
-          {t("home.p1")}
-        </p>
-        <p
-          class="mt-2 font-inter font-light text-xl text-center lg:text-2xl lg:text-2xl"
-        >
-          {t("home.p2")}
-        </p>
-        <p class="mt-2 font-inter font-light text-xl text-center lg:text-2xl">
-          {t("home.p3")}
-        </p>
-      </section>
-      <section
-        id="servicios"
-        class="flex flex-col sm:flex-row justify-around w-full mt-12 py-12 px-10 gap-28"
-      >
-        <Service
-          src={Flower.src}
-          alt="Flower icon"
-          title={t("services.spa.title")}
-          items={[
-            t("services.spa.1"),
-            t("services.spa.2"),
-            t("services.spa.3"),
-            t("services.spa.4"),
-            t("services.spa.5"),
-            t("services.spa.6"),
-            t("services.spa.7"),
-            t("services.spa.8"),
-            t("services.spa.9"),
-            t("services.spa.10"),
-            t("services.spa.11"),
-            t("services.spa.12"),
-            t("services.spa.13"),
-          ]}
-        />
+        <div class="absolute inset-0 z-0">
+          <CarouselWrapper images={heroImages} className="h-[55vh] lg:h-[65vh]" client:load />
+          <div class="absolute inset-0 bg-gradient-to-b from-cream/60 via-cream/50 to-cream/75"></div>
+        </div>
 
-        <Service
-          src={Face.src}
-          alt="Face icon"
-          title={t("services.facial.title")}
-          items={[
-            t("services.facial.1"),
-            t("services.facial.2"),
-            t("services.facial.3"),
-            t("services.facial.4"),
-            t("services.facial.5"),
-            t("services.facial.6"),
-            t("services.facial.7"),
-            t("services.facial.8"),
-            t("services.facial.9"),
-            t("services.facial.10"),
-            t("services.facial.11"),
-            t("services.facial.12"),
-            t("services.facial.13"),
-          ]}
-        />
-
-        <Service
-          src={Body.src}
-          alt="Body icon"
-          title={t("services.body.title")}
-          items={[
-            t("services.body.1"),
-            t("services.body.2"),
-            t("services.body.3"),
-            t("services.body.4"),
-            t("services.body.5"),
-            t("services.body.6"),
-            t("services.body.7"),
-            t("services.body.8"),
-            t("services.body.9"),
-            t("services.body.10"),
-            t("services.body.11"),
-            t("services.body.12"),
-            t("services.body.13"),
-          ]}
-        />
+        <div class="relative z-10 mx-auto max-w-7xl px-6 lg:px-10 text-center">
+          <h1 class="font-display text-4xl md:text-5xl lg:text-7xl font-bold text-brand-text mt-3 animate-fade-up" style="animation-delay: 0.25s; opacity: 0;">
+            {t("home.subtitle")}
+          </h1>
+          <div class="w-16 h-[3px] bg-secondary mx-auto mt-6 rounded-full animate-fade-up" style="animation-delay: 0.4s; opacity: 0;"></div>
+          <p class="font-body text-base md:text-lg lg:text-xl text-brand-muted max-w-2xl mx-auto mt-6 leading-relaxed animate-fade-up" style="animation-delay: 0.55s; opacity: 0;">
+            {t("home.p1")}
+          </p>
+          <div class="mt-8 animate-fade-up" style="animation-delay: 0.7s; opacity: 0;">
+            <a
+              href="https://wa.me/34691310652"
+              class="inline-flex items-center justify-center px-8 py-3.5 rounded-full bg-primary text-white font-body font-medium text-base transition-all duration-300 hover:bg-primary-dark hover:shadow-lg"
+            >
+              Reserva tu cita
+            </a>
+          </div>
+        </div>
       </section>
 
-      <section
-        id="galeria"
-        class="flex flex-col items-center px-10 mt-10 w-2/3"
-      >
-        <TitlePage
-          title={t("gallery.title")}
-          subtitle={t("gallery.subtitle")}
-        />
-        <Gallery images={images2} />
+      <section id="servicios" class="py-16 md:py-24 lg:py-32 bg-warm-white">
+        <div class="mx-auto max-w-7xl px-6 lg:px-10">
+          <TitlePage
+            title={t("routes.services")}
+            subtitle="Tratamientos a tu medida"
+          />
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mt-12 lg:mt-16">
+            <Service
+              iconType="spa"
+              title={t("services.spa.title")}
+              summary="Rituales de relajación inspirados en técnicas ancestrales para cuerpo y mente."
+              items={[
+                t("services.spa.1"),
+                t("services.spa.2"),
+                t("services.spa.3"),
+                t("services.spa.4"),
+                t("services.spa.5"),
+                t("services.spa.6"),
+                t("services.spa.7"),
+                t("services.spa.8"),
+                t("services.spa.9"),
+                t("services.spa.10"),
+                t("services.spa.11"),
+                t("services.spa.12"),
+                t("services.spa.13"),
+              ]}
+            />
+
+            <Service
+              iconType="facial"
+              title={t("services.facial.title")}
+              summary="Tratamientos personalizados para luminosidad, hidratación y rejuvenecimiento facial."
+              items={[
+                t("services.facial.1"),
+                t("services.facial.2"),
+                t("services.facial.3"),
+                t("services.facial.4"),
+                t("services.facial.5"),
+                t("services.facial.6"),
+                t("services.facial.7"),
+                t("services.facial.8"),
+                t("services.facial.9"),
+                t("services.facial.10"),
+                t("services.facial.11"),
+                t("services.facial.12"),
+                t("services.facial.13"),
+              ]}
+            />
+
+            <Service
+              iconType="body"
+              title={t("services.body.title")}
+              summary="Masajes terapéuticos y tratamientos corporales para moldear, relajar y tonificar."
+              items={[
+                t("services.body.1"),
+                t("services.body.2"),
+                t("services.body.3"),
+                t("services.body.4"),
+                t("services.body.5"),
+                t("services.body.6"),
+                t("services.body.7"),
+                t("services.body.8"),
+                t("services.body.9"),
+                t("services.body.10"),
+                t("services.body.11"),
+                t("services.body.12"),
+                t("services.body.13"),
+              ]}
+            />
+          </div>
+        </div>
+      </section>
+
+      <section id="galeria" class="py-16 md:py-24 lg:py-32 bg-cream">
+        <div class="mx-auto max-w-7xl px-6 lg:px-10">
+          <TitlePage
+            title={t("gallery.title")}
+            subtitle={t("gallery.subtitle")}
+          />
+          <div class="mt-12 lg:mt-16">
+            <Gallery images={images2} />
+          </div>
+        </div>
       </section>
 
       <FirmasLogos title={t("firmas.title")} images={logos} client:load />
 
-      <section id="ubicacion" class="flex flex-col items-center mt-20">
-        <TitlePage
-          title={t("ubication.title")}
-          subtitle={t("ubication.subtitle")}
-        />
-        <MapWrapper />
+      <section id="ubicacion" class="py-16 md:py-24 lg:py-32 bg-warm-white">
+        <div class="mx-auto max-w-7xl px-6 lg:px-10">
+          <TitlePage
+            title={t("ubication.title")}
+            subtitle={t("ubication.subtitle")}
+          />
+          <div class="mt-12 lg:mt-16 rounded-2xl overflow-hidden shadow-lg border border-brand-border">
+            <a href="https://maps.app.goo.gl/tpbQ5mXdgCtMiAWz7" class="block">
+              <MapWrapper />
+            </a>
+          </div>
+        </div>
       </section>
 
-      <section
-        id="contacta"
-        class="flex flex-col sm:flex-row justify-around w-full mt-12 py-0 px-10 mb-24"
-      >
-        <div class="flex flex-col items-center sm:items-start">
-          <h3 class="text-2xl font-inter font-medium">{t("about.us.title")}</h3>
-          <p class="font-inter font-light text-sm lg:text-lg">
-            {t("about.us.p1")}
-          </p>
-          <p class="font-inter font-light text-sm lg:text-lg">
-            {t("about.us.p2")}
-          </p>
-        </div>
-        <div class="flex flex-col mt-6 sm:mt-0 items-center sm:items-start">
-          <h3 class="text-2xl font-inter font-medium">
-            {t("about.horary.title")}
-          </h3>
-          <ul class="font-inter font-light text-sm lg:text-lg">
-            <li>{t("about.horary.p1")}</li>
-            <li>{t("about.horary.p2")}</li>
-            <li>{t("about.horary.p3")}</li>
-          </ul>
-        </div>
-        <div class="flex flex-col mt-6 sm:mt-0 items-center sm:items-start">
-          <h3 class="text-2xl font-inter font-medium">
-            {t("about.contact.title")}
-          </h3>
-          <ul class="font-inter font-light text-sm lg:text-lg">
-            <li>{t("about.contact.p1")}</li>
-            <li>{t("about.contact.p2")}</li>
-            <li>{t("about.contact.p3")}</li>
-          </ul>
+      <section id="contacta" class="w-full bg-cream py-16 md:py-24">
+        <div class="mx-auto max-w-7xl px-6 lg:px-10">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-16">
+            <div>
+              <h3 class="font-body text-xs font-medium uppercase tracking-widest text-primary mb-4">
+                {t("about.us.title")}
+              </h3>
+              <p class="font-body text-base text-brand-muted leading-relaxed">
+                {t("about.us.p1")}
+              </p>
+              <p class="font-body text-base text-brand-muted leading-relaxed mt-2">
+                {t("about.us.p2")}
+              </p>
+            </div>
+            <div>
+              <h3 class="font-body text-xs font-medium uppercase tracking-widest text-primary mb-4">
+                {t("about.horary.title")}
+              </h3>
+              <ul class="space-y-2">
+                <li class="font-body text-base text-brand-muted">{t("about.horary.p1")}</li>
+                <li class="font-body text-base text-brand-muted">{t("about.horary.p2")}</li>
+                <li class="font-body text-base text-brand-muted">{t("about.horary.p3")}</li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="font-body text-xs font-medium uppercase tracking-widest text-primary mb-4">
+                {t("about.contact.title")}
+              </h3>
+              <ul class="space-y-2">
+                <li class="font-body text-base text-brand-muted">{t("about.contact.p1")}</li>
+                <li class="font-body text-base text-brand-muted">{t("about.contact.p2")}</li>
+                <li class="font-body text-base text-brand-muted">{t("about.contact.p3")}</li>
+              </ul>
+            </div>
+          </div>
         </div>
       </section>
+
       <CookiesBanner
         client:load
         title={t("cookies.title")}
@@ -344,6 +333,7 @@ const t = useTranslations(langCast);
         onDeclineCallback={() => {}}
       />
     </main>
+
     <Footer
       subtitle={t("logo.subtitle")}
       address={t("about.contact.p1")}
