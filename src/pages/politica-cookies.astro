@@ -1,15 +1,21 @@
 ---
 import LayoutLegal from "../layout/LayoutLegal.astro";
-import TitlePage from "../components/TitlePage.astro";
 ---
 
 <LayoutLegal
   title="Política de Cookies - Estética Derma"
   description="Información sobre el uso de cookies en el sitio web de Estética Derma."
+  canonical="https://esteticaderma.com/politica-cookies/"
 >
   <section class="bg-cream py-16 md:py-24 lg:py-32">
     <div class="mx-auto max-w-7xl px-6 lg:px-10">
-      <TitlePage title="Información legal" subtitle="Política de Cookies" />
+      <div class="flex flex-col items-center text-center">
+        <span class="font-display text-lg md:text-xl text-primary">Información legal</span>
+        <h1 class="font-display text-3xl md:text-5xl font-semibold text-brand-text mt-2">
+          Política de Cookies
+        </h1>
+        <div class="w-16 h-[3px] bg-secondary mt-6 rounded-full"></div>
+      </div>
     </div>
   </section>
 

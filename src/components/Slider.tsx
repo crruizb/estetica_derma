@@ -1,6 +1,8 @@
 interface Image {
   src: string;
   alt: string;
+  width: number;
+  height: number;
 }
 
 interface Props {
@@ -24,6 +26,10 @@ export default function Slider({ images }: Props) {
             <img
               src={img.src}
               alt={img.alt}
+              width={img.width}
+              height={img.height}
+              loading="lazy"
+              decoding="async"
               className="max-h-10 w-auto object-contain grayscale transition-all duration-300 hover:grayscale-0"
             />
           </div>

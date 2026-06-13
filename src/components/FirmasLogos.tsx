@@ -3,6 +3,8 @@ import Slider from "./Slider";
 interface Image {
   src: string;
   alt: string;
+  width: number;
+  height: number;
 }
 
 interface Props {

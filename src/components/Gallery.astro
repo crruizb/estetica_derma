@@ -2,6 +2,8 @@
 interface Image {
   path: string;
   alt: string;
+  width: number;
+  height: number;
 }
 
 interface Props {
@@ -19,7 +21,10 @@ const { images } = Astro.props;
           class="w-full aspect-[4/5] object-cover transition-transform duration-500 group-hover:scale-[1.03]"
           src={image.path}
           alt={image.alt}
+          width={image.width}
+          height={image.height}
           loading="lazy"
+          decoding="async"
         />
       </div>
     ))

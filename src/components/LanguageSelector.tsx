@@ -47,28 +47,28 @@ export default function LanguageSelector({lang}: Props) {
 
   const saveLang = (img: ImageMetadata, lang: string) => {
     setSelectedLang(img);
-    navigate("/" + lang)
+    navigate("/" + lang + "/")
   };
 
 
   return (
           <DropdownMenu>
-    <DropdownMenuTrigger><img src={selectedLang.src} alt="Selected language icon" /></DropdownMenuTrigger>
+    <DropdownMenuTrigger aria-label="Selector de idioma"><img src={selectedLang.src} alt="" /></DropdownMenuTrigger>
     <DropdownMenuContent className="min-w-8">
       <DropdownMenuItem onClick={() => saveLang(es, "es")}>
-        <a href={`/es`}><img src={es.src} alt="Spanish flag" /></a>
+        <a href="/es/"><img src={es.src} alt="Español" /></a>
       </DropdownMenuItem>
       <DropdownMenuItem onClick={() => saveLang(ca, "ca")}>
-        <a href={`/ca`}><img src={ca.src} alt="Catalan flag" /></a>
+        <a href="/ca/"><img src={ca.src} alt="Català" /></a>
         </DropdownMenuItem>
       <DropdownMenuItem onClick={() => saveLang(en, "en")}>
-        <a href={`/en`}><img src={en.src} alt="UK Flag" /></a>
+        <a href="/en/"><img src={en.src} alt="English" /></a>
       </DropdownMenuItem>
-      <DropdownMenuItem onClick={() => saveLang(de, "de")}> 
-        <a href={`/de`}><img src={de.src} alt="German flag" /></a>
+      <DropdownMenuItem onClick={() => saveLang(de, "de")}>
+        <a href="/de/"><img src={de.src} alt="Deutsch" /></a>
       </DropdownMenuItem>
       <DropdownMenuItem onClick={() => saveLang(fr, "fr")}>
-        <a href={`/fr`}><img src={fr.src} alt="French flag" /></a>
+        <a href="/fr/"><img src={fr.src} alt="Français" /></a>
       </DropdownMenuItem>
     </DropdownMenuContent>
 

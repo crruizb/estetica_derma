@@ -54,7 +54,7 @@ export default function NavMobile({ routes }: Props) {
         <div className="px-8 py-8 border-t border-warm-white/10">
           <div className="flex items-center gap-6">
             <a
-              href="https://www.instagram.com/centro_de_estetica_derma?igsh=NDVvNjB3d3Z0cWN3"
+              href="https://www.instagram.com/centro_de_estetica_derma"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram"

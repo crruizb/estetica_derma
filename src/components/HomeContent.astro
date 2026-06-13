@@ -1,0 +1,373 @@
+---
+import Logo from "./Logo.astro";
+import { NavMenu } from "./ui/NavMenu";
+import { CarouselWrapper } from "./ui/CarouselWrapper";
+import TitlePage from "./TitlePage.astro";
+import Service from "./Service.astro";
+import MapWrapper from "./MapWrapper.astro";
+import Gallery from "./Gallery.astro";
+import NavMobile from "./NavMobile";
+import InstagramIcon from "./icons/InstagramIcon.astro";
+import WhatsAppButton from "./WhatsAppButton.astro";
+import Modal from "./Modal";
+import FirmasLogos from "./FirmasLogos";
+import CookiesBanner from "./CookiesBanner";
+import Footer from "./Footer.astro";
+import { useTranslations } from "../i18n/utils";
+import LanguageSelector from "./LanguageSelector";
+import { ui } from "../i18n/ui";
+
+interface Props {
+  lang: keyof typeof ui;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const heroImages = [
+  {
+    path: "/images/Limpieza-facial-profunda.jpg",
+    alt: t("images.hero.facial"),
+    width: 1920,
+    height: 1080,
+  },
+  {
+    path: "/images/beauty-face-massage-56884.jpg",
+    alt: t("images.hero.massage"),
+    width: 3888,
+    height: 2592,
+  },
+  {
+    path: "/images/7eb0dcf310238450490b27502631cb48.jpg",
+    alt: t("images.hero.chocolate"),
+    width: 3500,
+    height: 2102,
+  },
+];
+
+const galleryImages = [
+  {
+    path: "/images/Limpieza-facial-profunda-resized.jpg",
+    alt: t("images.gallery.facial"),
+    width: 1024,
+    height: 492,
+  },
+  {
+    path: "/images/beauty-face-massage-56884-resized.jpg",
+    alt: t("images.gallery.massage"),
+    width: 1024,
+    height: 492,
+  },
+  {
+    path: "/images/7eb0dcf310238450490b27502631cb48-resized.jpg",
+    alt: t("images.gallery.chocolate"),
+    width: 1024,
+    height: 492,
+  },
+  {
+    path: "/images/medicina-estetica-mujer-1024x492-resized.jpg",
+    alt: t("images.gallery.treatment"),
+    width: 1024,
+    height: 492,
+  },
+];
+
+const logos = [
+  {
+    src: "/images/ballancer-platinum-logo-2.png",
+    alt: "Ballancer",
+    width: 450,
+    height: 157,
+  },
+  {
+    src: "/images/nyxpert-logo.png",
+    alt: "Nyxpert",
+    width: 225,
+    height: 225,
+  },
+  {
+    src: "/images/logo-rollaction-nuevo.png",
+    alt: "System Roll Action",
+    width: 500,
+    height: 158,
+  },
+  {
+    src: "/images/lucanni-logo.png",
+    alt: "Lucanni",
+    width: 259,
+    height: 194,
+  },
+  {
+    src: "/images/thuya-logo.jfif",
+    alt: "Thuya",
+    width: 298,
+    height: 169,
+  },
+];
+
+const navRoutes = [
+  { label: t("routes.home"), href: "#home" },
+  { label: t("routes.services"), href: "#servicios" },
+  { label: t("routes.gallery"), href: "#galeria" },
+  { label: t("routes.ubication"), href: "#ubicacion" },
+];
+---
+
+<Modal title={t("popup.bono.regalo")} client:load>
+  <p class="font-body text-base md:text-lg leading-relaxed">{t("popup.bono")}</p>
+  <p class="font-body text-base md:text-lg leading-relaxed mt-4">
+    <a
+      class="text-primary font-medium hover:underline"
+      href="https://wa.me/34691310652"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      {t("popup.contact")}
+    </a>
+    {t("popup.more_info")}
+  </p>
+</Modal>
+
+<header
+  class="fixed top-0 left-0 right-0 z-40 transition-all duration-300 bg-warm-white/95 backdrop-blur-sm shadow-sm"
+>
+  <div class="mx-auto max-w-7xl px-6 lg:px-10">
+    <div class="flex items-center justify-between h-20 lg:h-24">
+      <a href="#home" class="transition-opacity hover:opacity-80" aria-label={t("seo.siteName")}>
+        <Logo title="Derma" subtitle={t("logo.subtitle")} />
+      </a>
+
+      <div class="hidden lg:flex items-center gap-8">
+        <NavMenu routes={navRoutes} client:visible />
+        <div class="h-6 w-px bg-brand-border"></div>
+        <InstagramIcon />
+        <LanguageSelector lang={lang} client:load />
+      </div>
+
+      <div class="flex items-center gap-3 lg:hidden">
+        <InstagramIcon />
+        <NavMobile routes={navRoutes} client:visible />
+        <LanguageSelector lang={lang} client:load />
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section
+    id="home"
+    class="relative h-[55vh] lg:h-[65vh] flex items-center justify-center overflow-hidden pt-20 lg:pt-24"
+  >
+    <div class="absolute inset-0 z-0">
+      <CarouselWrapper
+        images={heroImages}
+        className="h-[55vh] lg:h-[65vh]"
+        priority={true}
+        client:load
+      />
+      <div class="absolute inset-0 bg-gradient-to-b from-cream/60 via-cream/50 to-cream/75"></div>
+    </div>
+
+    <div class="relative z-10 mx-auto max-w-7xl px-6 lg:px-10 text-center">
+      <h1
+        class="font-display text-3xl md:text-4xl lg:text-6xl font-bold text-brand-text mt-3 animate-fade-up text-balance"
+        style="animation-delay: 0.25s; opacity: 0;"
+      >
+        {t("home.h1")}
+      </h1>
+      <div
+        class="w-16 h-[3px] bg-secondary mx-auto mt-6 rounded-full animate-fade-up"
+        style="animation-delay: 0.4s; opacity: 0;"
+      >
+      </div>
+      <p
+        class="font-body text-base md:text-lg lg:text-xl text-brand-muted max-w-2xl mx-auto mt-6 leading-relaxed animate-fade-up"
+        style="animation-delay: 0.55s; opacity: 0;"
+      >
+        {t("home.p1")}
+      </p>
+      <div class="mt-8 animate-fade-up" style="animation-delay: 0.7s; opacity: 0;">
+        <a
+          href="https://wa.me/34691310652"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center px-8 py-3.5 rounded-full bg-primary text-white font-body font-medium text-base transition-all duration-300 hover:bg-primary-dark hover:shadow-lg"
+        >
+          {t("home.cta")}
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="servicios" class="py-16 md:py-24 lg:py-32 bg-warm-white">
+    <div class="mx-auto max-w-7xl px-6 lg:px-10">
+      <TitlePage title={t("routes.services")} subtitle={t("services.section.subtitle")} />
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mt-12 lg:mt-16">
+        <Service
+          iconType="spa"
+          title={t("services.spa.title")}
+          summary={t("services.spa.summary")}
+          showMoreLabel={t("services.show_more")}
+          items={[
+            t("services.spa.1"),
+            t("services.spa.2"),
+            t("services.spa.3"),
+            t("services.spa.4"),
+            t("services.spa.5"),
+            t("services.spa.6"),
+            t("services.spa.7"),
+            t("services.spa.8"),
+            t("services.spa.9"),
+            t("services.spa.10"),
+            t("services.spa.11"),
+            t("services.spa.12"),
+            t("services.spa.13"),
+          ]}
+        />
+
+        <Service
+          iconType="facial"
+          title={t("services.facial.title")}
+          summary={t("services.facial.summary")}
+          showMoreLabel={t("services.show_more")}
+          items={[
+            t("services.facial.1"),
+            t("services.facial.2"),
+            t("services.facial.3"),
+            t("services.facial.4"),
+            t("services.facial.5"),
+            t("services.facial.6"),
+            t("services.facial.7"),
+            t("services.facial.8"),
+            t("services.facial.9"),
+            t("services.facial.10"),
+            t("services.facial.11"),
+            t("services.facial.12"),
+            t("services.facial.13"),
+          ]}
+        />
+
+        <Service
+          iconType="body"
+          title={t("services.body.title")}
+          summary={t("services.body.summary")}
+          showMoreLabel={t("services.show_more")}
+          items={[
+            t("services.body.1"),
+            t("services.body.2"),
+            t("services.body.3"),
+            t("services.body.4"),
+            t("services.body.5"),
+            t("services.body.6"),
+            t("services.body.7"),
+            t("services.body.8"),
+            t("services.body.9"),
+            t("services.body.10"),
+            t("services.body.11"),
+            t("services.body.12"),
+            t("services.body.13"),
+          ]}
+        />
+      </div>
+    </div>
+  </section>
+
+  <section id="galeria" class="py-16 md:py-24 lg:py-32 bg-cream">
+    <div class="mx-auto max-w-7xl px-6 lg:px-10">
+      <TitlePage title={t("gallery.title")} subtitle={t("gallery.subtitle")} />
+      <div class="mt-12 lg:mt-16">
+        <Gallery images={galleryImages} />
+      </div>
+    </div>
+  </section>
+
+  <FirmasLogos title={t("firmas.title")} images={logos} client:load />
+
+  <section id="ubicacion" class="py-16 md:py-24 lg:py-32 bg-warm-white">
+    <div class="mx-auto max-w-7xl px-6 lg:px-10">
+      <TitlePage title={t("ubication.title")} subtitle={t("ubication.subtitle")} />
+      <div class="mt-12 lg:mt-16 rounded-2xl overflow-hidden shadow-lg border border-brand-border">
+        <a
+          href="https://maps.app.goo.gl/tpbQ5mXdgCtMiAWz7"
+          class="block"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Ver ubicación en Google Maps"
+        >
+          <MapWrapper />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="contacta" class="w-full bg-cream py-16 md:py-24">
+    <div class="mx-auto max-w-7xl px-6 lg:px-10">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-16">
+        <div>
+          <h3 class="font-body text-xs font-medium uppercase tracking-widest text-primary mb-4">
+            {t("about.us.title")}
+          </h3>
+          <p class="font-body text-base text-brand-muted leading-relaxed">
+            {t("about.us.p1")}
+          </p>
+          <p class="font-body text-base text-brand-muted leading-relaxed mt-2">
+            {t("about.us.p2")}
+          </p>
+        </div>
+        <div>
+          <h3 class="font-body text-xs font-medium uppercase tracking-widest text-primary mb-4">
+            {t("about.horary.title")}
+          </h3>
+          <ul class="space-y-2">
+            <li class="font-body text-base text-brand-muted">{t("about.horary.p1")}</li>
+            <li class="font-body text-base text-brand-muted">{t("about.horary.p2")}</li>
+            <li class="font-body text-base text-brand-muted">{t("about.horary.p3")}</li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-body text-xs font-medium uppercase tracking-widest text-primary mb-4">
+            {t("about.contact.title")}
+          </h3>
+          <ul class="space-y-2">
+            <li class="font-body text-base text-brand-muted">{t("about.contact.p1")}</li>
+            <li class="font-body text-base text-brand-muted">
+              <a
+                href="mailto:contacto@esteticaderma.com"
+                class="hover:text-primary transition-colors"
+              >
+                {t("about.contact.p2")}
+              </a>
+            </li>
+            <li class="font-body text-base text-brand-muted">{t("about.contact.p3")}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CookiesBanner
+    client:load
+    title={t("cookies.title")}
+    p1={t("cookies.p1")}
+    click={t("cookies.click")}
+    acceptText={t("cookies.accept")}
+    usage={t("cookies.usage")}
+    readMore={t("cookies.read_more")}
+    declineText={t("cookies.decline")}
+    demo={false}
+    onAcceptCallback={() => {}}
+    onDeclineCallback={() => {}}
+  />
+</main>
+
+<Footer
+  subtitle={t("logo.subtitle")}
+  address={t("about.contact.p1")}
+  contact={t("contact")}
+  company={t("empresa")}
+  services={t("servicios")}
+  cookiesPolicy={t("cookies_policy")}
+  privacyPolicy={t("privacy_policy")}
+  legalPolicy={t("legal_policy")}
+/>
+<WhatsAppButton />
