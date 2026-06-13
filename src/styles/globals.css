@@ -1,5 +1,52 @@
 @tailwind base;
-  @tailwind components;
-  @tailwind utilities;
-  
+@tailwind components;
+@tailwind utilities;
 
+@layer base {
+  :root {
+    --color-primary: #b5655a;
+    --color-primary-dark: #9a4a40;
+    --color-secondary: #d4a574;
+    --color-cream: #f5e9e0;
+    --color-warm-white: #fdfbf9;
+    --color-text: #3e3e3e;
+    --color-text-muted: #6b6b6b;
+    --color-accent: #4a6741;
+    --color-border: #f0e6dd;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: "Jost", sans-serif;
+    color: var(--color-text);
+    background-color: var(--color-warm-white);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Cormorant Garamond", serif;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: "Cormorant Garamond", serif;
+  }
+
+  .font-body {
+    font-family: "Jost", sans-serif;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+}

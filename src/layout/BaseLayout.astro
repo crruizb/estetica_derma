@@ -1,0 +1,255 @@
+---
+import "@/styles/globals.css";
+import { SEO } from "astro-seo";
+import { useTranslations } from "../i18n/utils";
+import { ui, defaultLang } from "../i18n/ui";
+
+interface Props {
+  lang: keyof typeof ui;
+  title?: string;
+  description?: string;
+  canonical?: string;
+  ogImage?: string;
+  ogType?: string;
+  noindex?: boolean;
+  includeLeaflet?: boolean;
+  structuredData?: Record<string, unknown>[];
+  bodyClass?: string;
+}
+
+const {
+  lang,
+  title,
+  description,
+  canonical,
+  ogImage = "/images/Limpieza-facial-profunda.jpg",
+  ogType = "website",
+  noindex = false,
+  includeLeaflet = false,
+  structuredData = [],
+  bodyClass = "",
+} = Astro.props;
+
+const t = useTranslations(lang);
+
+const siteUrl = "https://esteticaderma.com";
+const path = Astro.url.pathname;
+const normalizedPath = path.replace(/\/$/, "") || "/";
+
+const isHome =
+  normalizedPath === "/" ||
+  normalizedPath === "/es" ||
+  normalizedPath === "/ca" ||
+  normalizedPath === "/en" ||
+  normalizedPath === "/fr" ||
+  normalizedPath === "/de";
+
+const homeCanonical =
+  lang === defaultLang ? `${siteUrl}/` : `${siteUrl}/${lang}/`;
+const pageCanonical = canonical || homeCanonical;
+
+const homeLanguages = ["es", "ca", "en", "fr", "de"] as const;
+
+const alternates = isHome
+  ? homeLanguages.map((l) => ({
+      lang: l,
+      href: l === defaultLang ? `${siteUrl}/` : `${siteUrl}/${l}/`,
+    }))
+  : [];
+
+const xDefault = isHome ? `${siteUrl}/` : undefined;
+
+const fullTitle = title || t("seo.title");
+const fullDescription = description || t("seo.description");
+const ogTitle = title || t("seo.og.title");
+const ogDescription = description || t("seo.og.description");
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: t("seo.siteName"),
+  url: siteUrl,
+  inLanguage: t("seo.locale"),
+  potentialAction: {
+    "@type": "SearchAction",
+    target: {
+      "@type": "EntryPoint",
+      urlTemplate: `${siteUrl}/?q={search_term_string}`,
+    },
+    "query-input": "required name=search_term_string",
+  },
+};
+
+const localBusinessSchema = isHome
+  ? {
+      "@context": "https://schema.org",
+      "@type": "BeautySalon",
+      "@id": `${siteUrl}/#business`,
+      name: t("seo.siteName"),
+      image: `${siteUrl}/favicon.svg`,
+      url: siteUrl,
+      telephone: "+34 934 38 59 70",
+      priceRange: "€€",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "Avenida Dr. Severo Ochoa 9, bajos",
+        addressLocality: "Hospitalet de Llobregat",
+        addressRegion: "Barcelona",
+        postalCode: "08906",
+        addressCountry: "ES",
+      },
+      geo: {
+        "@type": "GeoCoordinates",
+        latitude: 41.37601705153712,
+        longitude: 2.100368533812852,
+      },
+      openingHoursSpecification: [
+        {
+          "@type": "OpeningHoursSpecification",
+          dayOfWeek: "https://schema.org/Monday",
+          opens: "16:00",
+          closes: "20:00",
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          dayOfWeek: [
+            "https://schema.org/Tuesday",
+            "https://schema.org/Wednesday",
+            "https://schema.org/Thursday",
+            "https://schema.org/Friday",
+          ],
+          opens: "10:00",
+          closes: "20:00",
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          dayOfWeek: "https://schema.org/Saturday",
+          opens: "10:00",
+          closes: "14:00",
+        },
+      ],
+      sameAs: ["https://www.instagram.com/centro_de_estetica_derma"],
+    }
+  : null;
+
+const schemas = [
+  websiteSchema,
+  ...(localBusinessSchema ? [localBusinessSchema] : []),
+  ...structuredData,
+];
+---
+
+<html lang={lang}>
+  <head>
+    <SEO
+      title={fullTitle}
+      description={fullDescription}
+      noindex={noindex}
+      nofollow={noindex}
+      openGraph={{
+        basic: {
+          title: ogTitle,
+          type: ogType,
+          image: `${siteUrl}${ogImage}`,
+          url: pageCanonical,
+        },
+        optional: {
+          siteName: t("seo.siteName"),
+          description: ogDescription,
+          locale: t("seo.locale"),
+        },
+      }}
+      twitter={{
+        card: "summary_large_image",
+        site: "@esteticaderma",
+        title: ogTitle,
+        description: ogDescription,
+        image: `${siteUrl}${ogImage}`,
+        imageAlt: ogTitle,
+      }}
+      extend={{
+        link: [
+          { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
+          { rel: "canonical", href: pageCanonical },
+          { rel: "preconnect", href: "https://fonts.googleapis.com" },
+          { rel: "preconnect", href: "https://fonts.gstatic.com", crossorigin: "anonymous" },
+          { rel: "preconnect", href: "https://unpkg.com" },
+          { rel: "dns-prefetch", href: "https://unpkg.com" },
+          { rel: "preconnect", href: "https://tile.openstreetmap.org" },
+          { rel: "dns-prefetch", href: "https://tile.openstreetmap.org" },
+          ...alternates.map((alt) => ({
+            rel: "alternate",
+            hreflang: alt.lang,
+            href: alt.href,
+          })),
+          ...(xDefault
+            ? [
+                {
+                  rel: "alternate",
+                  hreflang: "x-default",
+                  href: xDefault,
+                },
+              ]
+            : []),
+        ],
+        meta: [
+          { name: "keywords", content: t("seo.keywords") },
+          { name: "author", content: t("seo.siteName") },
+          { name: "theme-color", content: "#B85C4F" },
+          { name: "robots", content: noindex ? "noindex,nofollow" : "index,follow" },
+        ],
+      }}
+    />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Jost:wght@300;400;500&display=swap"
+    />
+    {
+      includeLeaflet && (
+        <>
+          <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+          <script is:inline src="https://unpkg.com/leaflet/dist/leaflet.js" defer />
+          <script is:inline defer>
+            (function () {
+              function initDermaMap() {
+                const L = window.L;
+                if (!L) return;
+
+                const coords = [41.37601705153712, 2.100368533812852];
+                const map = L.map("map", { scrollWheelZoom: false }).setView(coords, 16);
+
+                L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+                  attribution:
+                    '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap</a> contributors',
+                }).addTo(map);
+
+                L.marker(coords).addTo(map).bindPopup("Estética Derma").openPopup();
+              }
+
+              if (document.readyState === "loading") {
+                document.addEventListener("DOMContentLoaded", initDermaMap);
+              } else {
+                initDermaMap();
+              }
+            })();
+          </script>
+        </>
+      )
+    }
+    {
+      schemas.length > 0 && (
+        <script
+          is:inline
+          type="application/ld+json"
+          set:html={JSON.stringify(schemas.length === 1 ? schemas[0] : schemas)}
+        />
+      )
+    }
+  </head>
+  <body class={bodyClass}>
+    <slot />
+  </body>
+</html>

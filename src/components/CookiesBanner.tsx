@@ -58,7 +58,7 @@ export default function CookiesBanner({ title, p1, click, acceptText, usage, rea
           <div className="bg-gray-100 rounded-md m-2">
               <div className="grid gap-2">
                   <div className="border-b border-border border-gray-300 h-14 flex items-center justify-between p-4">
-                      <h1 className="text-lg font-medium">{title}</h1>
+                      <h2 className="text-lg font-medium">{title}</h2>
                       <CookieIcon className="h-[1.2rem] w-[1.2rem]" />
                   </div>
                   <div className="p-4">
@@ -68,7 +68,7 @@ export default function CookiesBanner({ title, p1, click, acceptText, usage, rea
                           <br />
                           <span className="text-xs">{click}<span className="font-medium opacity-80">{acceptText}</span>{usage}</span>
                           <br />
-                          <a href="/politica-cookies" className="text-xs underline">{readMore}</a>
+                          <a href="/politica-cookies/" className="text-xs underline">{readMore}</a>
                       </p>
                   </div>
                   <div className="flex gap-2 p-4 py-5 border-t border-border bg-background/20">

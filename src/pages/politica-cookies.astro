@@ -1,90 +1,111 @@
 ---
-import "@/styles/globals.css";
-import { useTranslations } from "../i18n/utils";
 import LayoutLegal from "../layout/LayoutLegal.astro";
-
-const t = useTranslations("es");
 ---
 
-<LayoutLegal>
-  <section class="p-12 font-inter">
-    <h1 class="text-3xl">POLÍTICA DE COOKIES</h1>
-    <p class="text-md mb-8">
-      El acceso a este Sitio Web puede implicar la utilización de cookies. Las
-      cookies son pequeñas cantidades de información que se almacenan en el
-      navegador utilizado por cada Usuario —en los distintos dispositivos que
-      pueda utilizar para navegar— para que el servidor recuerde cierta
-      información que posteriormente y únicamente el servidor que la implementó
-      leerá. Las cookies facilitan la navegación, la hacen más amigable, y no
-      dañan el dispositivo de navegación.
-    </p>
+<LayoutLegal
+  title="Política de Cookies - Estética Derma"
+  description="Información sobre el uso de cookies en el sitio web de Estética Derma."
+  canonical="https://esteticaderma.com/politica-cookies/"
+>
+  <section class="bg-cream py-16 md:py-24 lg:py-32">
+    <div class="mx-auto max-w-7xl px-6 lg:px-10">
+      <div class="flex flex-col items-center text-center">
+        <span class="font-display text-lg md:text-xl text-primary">Información legal</span>
+        <h1 class="font-display text-3xl md:text-5xl font-semibold text-brand-text mt-2">
+          Política de Cookies
+        </h1>
+        <div class="w-16 h-[3px] bg-secondary mt-6 rounded-full"></div>
+      </div>
+    </div>
+  </section>
 
-    <p class="text-md mb-8">
-      Las cookies son procedimientos automáticos de recogida de información
-      relativa a las preferencias determinadas por el Usuario durante su visita
-      al Sitio Web con el fin de reconocerlo como Usuario, y personalizar su
-      experiencia y el uso del Sitio Web, y pueden también, por ejemplo, ayudar
-      a identificar y resolver errores.
-    </p>
+  <section class="bg-warm-white py-16 md:py-24 lg:py-32">
+    <div class="mx-auto max-w-7xl px-6 lg:px-10">
+      <div class="max-w-4xl mx-auto">
+        <p class="font-body text-base md:text-lg text-brand-muted leading-relaxed mb-6">
+          El acceso a este Sitio Web puede implicar la utilización de cookies. Las
+          cookies son pequeñas cantidades de información que se almacenan en el
+          navegador utilizado por cada Usuario —en los distintos dispositivos que
+          pueda utilizar para navegar— para que el servidor recuerde cierta
+          información que posteriormente y únicamente el servidor que la implementó
+          leerá. Las cookies facilitan la navegación, la hacen más amigable, y no
+          dañan el dispositivo de navegación.
+        </p>
 
-    <p class="text-md mb-8">
-      La información recabada a través de las cookies puede incluir la fecha y
-      hora de visitas al Sitio Web, las páginas visionadas, el tiempo que ha
-      estado en el Sitio Web y los sitios visitados justo antes y después del
-      mismo. Sin embargo, ninguna cookie permite que esta misma pueda
-      contactarse con el número de teléfono del Usuario o con cualquier otro
-      medio de contacto personal. Ninguna cookie puede extraer información del
-      disco duro del Usuario o robar información personal. La única manera de
-      que la información privada del Usuario forme parte del archivo Cookie es
-      que el usuario dé personalmente esa información al servidor.
-    </p>
+        <p class="font-body text-base md:text-lg text-brand-muted leading-relaxed mb-6">
+          Las cookies son procedimientos automáticos de recogida de información
+          relativa a las preferencias determinadas por el Usuario durante su visita
+          al Sitio Web con el fin de reconocerlo como Usuario, y personalizar su
+          experiencia y el uso del Sitio Web, y pueden también, por ejemplo, ayudar
+          a identificar y resolver errores.
+        </p>
 
-    <p class="text-md mb-8">
-      Las cookies que permiten identificar a una persona se consideran datos
-      personales. Por tanto, a las mismas les será de aplicación la Política de
-      Privacidad anteriormente descrita. En este sentido, para la utilización de
-      las mismas será necesario el consentimiento del Usuario. Este
-      consentimiento será comunicado, en base a una elección auténtica, ofrecido
-      mediante una decisión afirmativa y positiva, antes del tratamiento
-      inicial, removible y documentado.
-    </p>
+        <p class="font-body text-base md:text-lg text-brand-muted leading-relaxed mb-6">
+          La información recabada a través de las cookies puede incluir la fecha y
+          hora de visitas al Sitio Web, las páginas visionadas, el tiempo que ha
+          estado en el Sitio Web y los sitios visitados justo antes y después del
+          mismo. Sin embargo, ninguna cookie permite que esta misma pueda
+          contactarse con el número de teléfono del Usuario o con cualquier otro
+          medio de contacto personal. Ninguna cookie puede extraer información del
+          disco duro del Usuario o robar información personal. La única manera de
+          que la información privada del Usuario forme parte del archivo Cookie es
+          que el usuario dé personalmente esa información al servidor.
+        </p>
 
-    <h2 class="text-2xl">Cookies de redes sociales</h2>
-    <p class="text-md mb-8">
-      Estetica Derma incorpora plugins de redes sociales, que permiten acceder a
-      las mismas a partir del Sitio Web. Por esta razón, las cookies de redes
-      sociales pueden almacenarse en el navegador del Usuario. Los titulares de
-      dichas redes sociales disponen de sus propias políticas de protección de
-      datos y de cookies, siendo ellos mismos, en cada caso, responsables de sus
-      propios ficheros y de sus propias prácticas de privacidad. El Usuario debe
-      referirse a las mismas para informarse acerca de dichas cookies y, en su
-      caso, del tratamiento de sus datos personales. Únicamente a título
-      informativo se indican a continuación los enlaces en los que se pueden
-      consultar dichas políticas de privacidad y/o de cookies:
-    </p>
+        <p class="font-body text-base md:text-lg text-brand-muted leading-relaxed mb-6">
+          Las cookies que permiten identificar a una persona se consideran datos
+          personales. Por tanto, a las mismas les será de aplicación la Política de
+          Privacidad anteriormente descrita. En este sentido, para la utilización de
+          las mismas será necesario el consentimiento del Usuario. Este
+          consentimiento será comunicado, en base a una elección auténtica, ofrecido
+          mediante una decisión afirmativa y positiva, antes del tratamiento
+          inicial, removible y documentado.
+        </p>
 
-    <ul class="mb-8">
-      <li class="text-md">
-        Instagram: <a
-          class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-          href="https://help.instagram.com/1896641480634370?ref=ig"
-          >Política de cookies de Instagram</a
-        >
-      </li>
-    </ul>
+        <h2 class="font-display text-2xl md:text-3xl font-semibold text-brand-text mt-12 mb-6">
+          Cookies de redes sociales
+        </h2>
+        <p class="font-body text-base md:text-lg text-brand-muted leading-relaxed mb-6">
+          Estetica Derma incorpora plugins de redes sociales, que permiten acceder a
+          las mismas a partir del Sitio Web. Por esta razón, las cookies de redes
+          sociales pueden almacenarse en el navegador del Usuario. Los titulares de
+          dichas redes sociales disponen de sus propias políticas de protección de
+          datos y de cookies, siendo ellos mismos, en cada caso, responsables de sus
+          propios ficheros y de sus propias prácticas de privacidad. El Usuario debe
+          referirse a las mismas para informarse acerca de dichas cookies y, en su
+          caso, del tratamiento de sus datos personales. Únicamente a título
+          informativo se indican a continuación los enlaces en los que se pueden
+          consultar dichas políticas de privacidad y/o de cookies:
+        </p>
 
-    <h2 class="text-2xl">Deshabilitar, rechazar y eliminar cookies</h2>
-    <p class="text-md mb-8">
-      El Usuario puede deshabilitar, rechazar y eliminar las cookies —total o
-      parcialmente— instaladas en su dispositivo mediante la configuración de su
-      navegador (entre los que se encuentran, por ejemplo, Chrome, Firefox,
-      Safari, Explorer). En este sentido, los procedimientos para rechazar y
-      eliminar las cookies pueden diferir de un navegador de Internet a otro. En
-      consecuencia, el Usuario debe acudir a las instrucciones facilitadas por
-      el propio navegador de Internet que esté utilizando. En el supuesto de que
-      rechace el uso de cookies —total o parcialmente— podrá seguir usando el
-      Sitio Web, si bien podrá tener limitada la utilización de algunas de las
-      prestaciones del mismo.
-    </p>
+        <ul class="list-disc pl-6 space-y-2 mb-6">
+          <li class="font-body text-base md:text-lg text-brand-muted">
+            Instagram: <a
+              class="text-primary font-medium hover:underline transition-colors"
+              href="https://help.instagram.com/1896641480634370?ref=ig"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Política de cookies de Instagram</a
+            >
+          </li>
+        </ul>
+
+        <h2 class="font-display text-2xl md:text-3xl font-semibold text-brand-text mt-12 mb-6">
+          Deshabilitar, rechazar y eliminar cookies
+        </h2>
+        <p class="font-body text-base md:text-lg text-brand-muted leading-relaxed mb-6">
+          El Usuario puede deshabilitar, rechazar y eliminar las cookies —total o
+          parcialmente— instaladas en su dispositivo mediante la configuración de su
+          navegador (entre los que se encuentran, por ejemplo, Chrome, Firefox,
+          Safari, Explorer). En este sentido, los procedimientos para rechazar y
+          eliminar las cookies pueden diferir de un navegador de Internet a otro. En
+          consecuencia, el Usuario debe acudir a las instrucciones facilitadas por
+          el propio navegador de Internet que esté utilizando. En el supuesto de que
+          rechace el uso de cookies —total o parcialmente— podrá seguir usando el
+          Sitio Web, si bien podrá tener limitada la utilización de algunas de las
+          prestaciones del mismo.
+        </p>
+      </div>
+    </div>
   </section>
 </LayoutLegal>
