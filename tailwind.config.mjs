@@ -55,10 +55,10 @@ export default {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "fade-up": "fade-up 0.8s ease-out forwards",
-        "slide-logos": "slide-logos 25s linear infinite",
+        "slide-logos": "slide-logos 20s linear infinite",
         "pulse-ring": "pulse-ring 2s ease-out infinite",
       },
     },
   },
   plugins: [require("tailwindcss-animate")],
-}
+};
