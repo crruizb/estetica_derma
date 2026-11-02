@@ -1,3 +1,7 @@
+// Lets opacity modifiers (e.g. bg-brand-dark/80) work with the hex CSS variables.
+const withAlpha = (variable) =>
+  `color-mix(in srgb, var(${variable}) calc(<alpha-value> * 100%), transparent)`;
+
 /** @type {import('tailwindcss').Config} */
 export default {
   darkMode: ["class"],
@@ -14,16 +18,18 @@ export default {
     extend: {
       colors: {
         primary: {
-          DEFAULT: "var(--color-primary)",
-          dark: "var(--color-primary-dark)",
+          DEFAULT: withAlpha("--color-primary"),
+          dark: withAlpha("--color-primary-dark"),
         },
-        secondary: "var(--color-secondary)",
-        cream: "var(--color-cream)",
-        "warm-white": "var(--color-warm-white)",
-        "brand-text": "var(--color-text)",
-        "brand-muted": "var(--color-text-muted)",
-        accent: "var(--color-accent)",
-        "brand-border": "var(--color-border)",
+        secondary: withAlpha("--color-secondary"),
+        cream: withAlpha("--color-cream"),
+        "warm-white": withAlpha("--color-warm-white"),
+        "brand-text": withAlpha("--color-text"),
+        "brand-muted": withAlpha("--color-text-muted"),
+        accent: withAlpha("--color-accent"),
+        "brand-border": withAlpha("--color-border"),
+        "brand-dark": withAlpha("--color-dark"),
+        sand: withAlpha("--color-sand"),
       },
       fontFamily: {
         display: ["Cormorant Garamond", "serif"],
@@ -55,7 +61,7 @@ export default {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "fade-up": "fade-up 0.8s ease-out forwards",
-        "slide-logos": "slide-logos 20s linear infinite",
+        "slide-logos": "slide-logos 40s linear infinite",
         "pulse-ring": "pulse-ring 2s ease-out infinite",
       },
     },

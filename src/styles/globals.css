@@ -13,10 +13,16 @@
     --color-text-muted: #6b6b6b;
     --color-accent: #4a6741;
     --color-border: #f0e6dd;
+    --color-sand: #e9ddd0;
+    --color-dark: #2e2925;
   }
 
   html {
     scroll-behavior: smooth;
+  }
+
+  section[id] {
+    scroll-margin-top: 7rem;
   }
 
   body {
@@ -34,6 +40,40 @@
   h5,
   h6 {
     font-family: "Cormorant Garamond", serif;
+  }
+}
+
+@layer components {
+  .eyebrow {
+    @apply font-body text-xs font-medium uppercase tracking-[0.25em] text-primary;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 px-8 py-3.5 font-body text-xs font-medium uppercase tracking-[0.2em] transition-colors duration-300;
+  }
+
+  .btn-dark {
+    @apply btn bg-brand-dark text-warm-white hover:bg-primary;
+  }
+
+  .btn-light {
+    @apply btn bg-warm-white text-brand-dark hover:bg-sand;
+  }
+
+  .btn-outline-light {
+    @apply btn border border-warm-white/70 text-warm-white hover:bg-warm-white hover:text-brand-dark;
+  }
+
+  .btn-outline-dark {
+    @apply btn border border-brand-dark text-brand-dark hover:bg-brand-dark hover:text-warm-white;
+  }
+
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
   }
 }
 

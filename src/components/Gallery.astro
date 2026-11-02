@@ -13,12 +13,12 @@ interface Props {
 const { images } = Astro.props;
 ---
 
-<div class="grid grid-cols-2 gap-4 lg:gap-6 max-w-2xl mx-auto">
+<div class="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4">
   {
-    images.map((image) => (
-      <div class="group overflow-hidden rounded-xl">
+    images.map((image, i) => (
+      <div class:list={["group overflow-hidden", i % 2 === 1 && "lg:mt-12"]}>
         <img
-          class="w-full aspect-[4/5] object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+          class="w-full aspect-[3/4] object-cover transition-transform duration-700 group-hover:scale-105"
           src={image.path}
           alt={image.alt}
           width={image.width}

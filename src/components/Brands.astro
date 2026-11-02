@@ -1,0 +1,41 @@
+---
+interface Brand {
+  name: string;
+  // Transparent single-colour logo, used as a mask so it takes the brand colour.
+  src: string;
+  // Display size in px at desktop; sized so every logo has a similar visual weight.
+  width: number;
+  height: number;
+}
+
+interface Props {
+  title: string;
+  brands: Brand[];
+}
+
+const { title, brands } = Astro.props;
+// Duplicate the list so the -50% translate loops seamlessly.
+const track = [...brands, ...brands, ...brands, ...brands];
+---
+
+<section class="bg-sand py-12 md:py-16 overflow-hidden" aria-label={title}>
+  <p class="eyebrow text-center">{title}</p>
+  <div
+    class="mt-10 flex w-max items-center animate-slide-logos hover:[animation-play-state:paused] text-[12px] md:text-lg"
+    aria-hidden="true"
+  >
+    {
+      track.map((brand) => (
+        <span class="px-8 md:px-14 shrink-0">
+          <span
+            class="block bg-brand-dark/75 hover:bg-primary transition-colors duration-300"
+            style={`width: ${brand.width / 16}em; height: ${brand.height / 16}em; -webkit-mask: url("${brand.src}") center / contain no-repeat; mask: url("${brand.src}") center / contain no-repeat;`}
+          />
+        </span>
+      ))
+    }
+  </div>
+  <ul class="sr-only">
+    {brands.map((brand) => <li>{brand.name}</li>)}
+  </ul>
+</section>

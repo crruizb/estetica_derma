@@ -1,0 +1,81 @@
+---
+import Logo from "./Logo.astro";
+import { NavMenu } from "./ui/NavMenu";
+import NavMobile from "./NavMobile";
+import LanguageSelector from "./LanguageSelector";
+import SocialLinks from "./SocialLinks.astro";
+import { localizedPath, useTranslations } from "../i18n/utils";
+import { ui } from "../i18n/ui";
+
+interface Props {
+  lang: keyof typeof ui;
+  page?: "home" | "treatments" | "legal";
+}
+
+const { lang, page = "home" } = Astro.props;
+const t = useTranslations(lang);
+
+const isHome = page === "home";
+// Legal pages are Spanish-only, so switching language from them goes to that language's home.
+const languagePath = page === "treatments" ? "tratamientos/" : "";
+const home = localizedPath(lang);
+const homeHref = isHome ? "#home" : home;
+const anchor = (id: string) => (isHome ? `#${id}` : `${home}#${id}`);
+
+const routes = [
+  { label: t("routes.home"), href: homeHref },
+  { label: t("treatments.title").toLocaleUpperCase(lang), href: localizedPath(lang, "tratamientos/") },
+  { label: t("routes.gift"), href: anchor("regalo") },
+  { label: t("routes.gallery"), href: anchor("galeria") },
+  { label: t("routes.ubication"), href: anchor("ubicacion") },
+];
+const bookingUrl = `https://wa.me/34691310652?text=${encodeURIComponent(t("booking.whatsapp"))}`;
+---
+
+<div class="bg-brand-dark text-warm-white/80">
+  <div class="mx-auto max-w-7xl px-6 lg:px-10 h-10 flex items-center justify-between gap-4">
+    <SocialLinks />
+    <p class="hidden md:block font-body text-[11px] uppercase tracking-[0.2em] truncate">
+      {t("topbar.message")}
+    </p>
+    <LanguageSelector lang={lang} path={languagePath} client:load />
+  </div>
+</div>
+
+<header class="sticky top-0 z-40 bg-sand/95 backdrop-blur-sm border-b border-brand-dark/10">
+  <div class="mx-auto max-w-7xl px-6 lg:px-10">
+    <div class="grid grid-cols-[1fr_auto_1fr] items-center h-20 lg:h-24">
+      <a
+        href="tel:+34934385970"
+        class="hidden lg:inline font-body text-xs uppercase tracking-[0.2em] text-brand-dark hover:text-primary transition-colors"
+      >
+        934 385 970
+      </a>
+      <span class="lg:hidden"></span>
+
+      <a href={homeHref} class="transition-opacity hover:opacity-80" aria-label={t("seo.siteName")}>
+        <Logo />
+      </a>
+
+      <div class="flex justify-end">
+        <a href={bookingUrl} target="_blank" rel="noopener noreferrer" class="btn-dark hidden lg:inline-flex">
+          {t("home.cta")}
+        </a>
+        <NavMobile
+          routes={routes}
+          homeHref={homeHref}
+          ctaLabel={t("home.cta")}
+          ctaHref={bookingUrl}
+          address={t("about.contact.p1")}
+          followLabel={t("footer.follow")}
+          client:visible
+        />
+      </div>
+    </div>
+  </div>
+  <div class="hidden lg:block border-t border-brand-dark/10">
+    <div class="mx-auto max-w-7xl px-6 lg:px-10 h-12 flex items-center justify-center">
+      <NavMenu routes={routes} client:visible />
+    </div>
+  </div>
+</header>

@@ -1,0 +1,54 @@
+---
+import TitlePage from "./TitlePage.astro";
+import { reviews } from "../data/reviews";
+
+interface Props {
+  eyebrow: string;
+  title: string;
+  ctaLabel: string;
+}
+
+const { eyebrow, title, ctaLabel } = Astro.props;
+---
+
+<section id="opiniones" class="py-20 md:py-28 lg:py-32 bg-cream">
+  <div class="mx-auto max-w-7xl px-6 lg:px-10">
+    <TitlePage eyebrow={eyebrow} title={title} />
+
+    <div
+      class="no-scrollbar mt-12 lg:mt-16 -mx-6 px-6 flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-px-6 lg:mx-0 lg:px-0 lg:grid lg:grid-cols-4 lg:overflow-visible"
+    >
+      {
+        reviews.map((review) => (
+          <figure class="snap-start shrink-0 w-[80%] sm:w-[45%] lg:w-auto bg-warm-white p-8 flex flex-col">
+            <div class="text-secondary tracking-[0.2em]" aria-label={`${review.rating}/5`}>
+              {"★".repeat(review.rating)}
+            </div>
+            <blockquote class="font-display text-xl leading-snug text-brand-dark mt-5 flex-1">
+              “{review.text}”
+            </blockquote>
+            <figcaption class="mt-6 pt-6 border-t border-brand-border">
+              <p class="font-body text-xs font-medium uppercase tracking-[0.2em] text-brand-dark">
+                {review.author}
+              </p>
+              <p class="font-body text-[11px] uppercase tracking-[0.2em] text-brand-muted mt-1">
+                {review.detail}
+              </p>
+            </figcaption>
+          </figure>
+        ))
+      }
+    </div>
+
+    <div class="mt-12 text-center">
+      <a
+        href="https://maps.app.goo.gl/tpbQ5mXdgCtMiAWz7"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn-outline-dark"
+      >
+        {ctaLabel}
+      </a>
+    </div>
+  </div>
+</section>

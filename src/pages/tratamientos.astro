@@ -1,0 +1,17 @@
+---
+import SiteLayout from "../layout/SiteLayout.astro";
+import TreatmentsContent from "../components/TreatmentsContent.astro";
+import { useTranslations } from "../i18n/utils";
+
+const t = useTranslations("es");
+---
+
+<SiteLayout
+  lang="es"
+  page="treatments"
+  title={t("treatments.seo.title")}
+  description={t("treatments.seo.description")}
+  canonical="https://esteticaderma.com/tratamientos/"
+>
+  <TreatmentsContent lang="es" />
+</SiteLayout>

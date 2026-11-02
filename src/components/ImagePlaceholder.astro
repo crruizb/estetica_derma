@@ -1,0 +1,25 @@
+---
+// Stand-in for photos we don't have yet. Replace with a real <img> when available.
+interface Props {
+  label: string;
+  class?: string;
+}
+
+const { label, class: className = "" } = Astro.props;
+---
+
+<div
+  class:list={[
+    "flex flex-col items-center justify-center gap-3 bg-sand text-brand-muted",
+    className,
+  ]}
+  role="img"
+  aria-label={label}
+>
+  <svg class="w-10 h-10 opacity-60" fill="none" stroke="currentColor" stroke-width="1.25" viewBox="0 0 24 24" aria-hidden="true">
+    <rect x="3" y="4" width="18" height="16" rx="1.5" />
+    <circle cx="9" cy="10" r="2" />
+    <path d="m21 16-5-5-9 9" />
+  </svg>
+  <span class="font-body text-[11px] uppercase tracking-[0.2em]">{label}</span>
+</div>

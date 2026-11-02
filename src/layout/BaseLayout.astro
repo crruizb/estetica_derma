@@ -50,14 +50,20 @@ const pageCanonical = canonical || homeCanonical;
 
 const homeLanguages = ["es", "ca", "en", "fr", "de"] as const;
 
-const alternates = isHome
+// Pages that exist in every language get hreflang alternates.
+const pagePath = normalizedPath.replace(/^\/(es|ca|en|fr|de)(?=\/|$)/, "") || "/";
+const translatedPaths: Record<string, string> = { "/": "", "/tratamientos": "tratamientos/" };
+const translatedPath = translatedPaths[pagePath];
+const isTranslated = translatedPath !== undefined;
+
+const alternates = isTranslated
   ? homeLanguages.map((l) => ({
       lang: l,
-      href: l === defaultLang ? `${siteUrl}/` : `${siteUrl}/${l}/`,
+      href: l === defaultLang ? `${siteUrl}/${translatedPath}` : `${siteUrl}/${l}/${translatedPath}`,
     }))
   : [];
 
-const xDefault = isHome ? `${siteUrl}/` : undefined;
+const xDefault = isTranslated ? `${siteUrl}/${translatedPath}` : undefined;
 
 const fullTitle = title || t("seo.title");
 const fullDescription = description || t("seo.description");

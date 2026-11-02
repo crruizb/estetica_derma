@@ -1,0 +1,124 @@
+---
+import TitlePage from "./TitlePage.astro";
+import ImagePlaceholder from "./ImagePlaceholder.astro";
+
+interface Treatment {
+  name: string;
+  category: string;
+  image?: string;
+  price?: string;
+}
+
+interface Props {
+  eyebrow: string;
+  title: string;
+  treatments: Treatment[];
+  priceOnRequest: string;
+  bookLabel: string;
+  bookingMessage: string;
+  placeholderLabel: string;
+  prevLabel: string;
+  nextLabel: string;
+  viewAllLabel: string;
+  viewAllHref: string;
+}
+
+const {
+  eyebrow,
+  title,
+  treatments,
+  priceOnRequest,
+  bookLabel,
+  bookingMessage,
+  placeholderLabel,
+  prevLabel,
+  nextLabel,
+  viewAllLabel,
+  viewAllHref,
+} = Astro.props;
+
+const bookingUrl = (name: string) =>
+  `https://wa.me/34691310652?text=${encodeURIComponent(bookingMessage + name)}`;
+---
+
+<section id="destacados" class="py-20 md:py-28 lg:py-32 bg-warm-white" data-featured>
+  <div class="mx-auto max-w-7xl px-6 lg:px-10">
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+      <TitlePage eyebrow={eyebrow} title={title} align="left" />
+      <div class="hidden md:flex gap-2">
+        <button
+          type="button"
+          data-featured-prev
+          aria-label={prevLabel}
+          class="w-12 h-12 border border-brand-dark/30 text-brand-dark flex items-center justify-center hover:bg-brand-dark hover:text-warm-white transition-colors"
+        >
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg>
+        </button>
+        <button
+          type="button"
+          data-featured-next
+          aria-label={nextLabel}
+          class="w-12 h-12 border border-brand-dark/30 text-brand-dark flex items-center justify-center hover:bg-brand-dark hover:text-warm-white transition-colors"
+        >
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18l6-6-6-6"></path></svg>
+        </button>
+      </div>
+    </div>
+
+    <ul
+      data-featured-track
+      class="no-scrollbar mt-12 lg:mt-16 -mx-6 px-6 lg:-mx-10 lg:px-10 flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth scroll-px-6 lg:scroll-px-10"
+    >
+      {
+        treatments.map((treatment) => (
+          <li class="group snap-start shrink-0 w-[75%] sm:w-[45%] lg:w-[calc((100%-4.5rem)/4)] flex flex-col">
+            <div class="overflow-hidden aspect-[4/5]">
+              {treatment.image ? (
+                <img
+                  src={treatment.image}
+                  alt={treatment.name}
+                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  loading="lazy"
+                  decoding="async"
+                />
+              ) : (
+                <ImagePlaceholder label={placeholderLabel} class="w-full h-full" />
+              )}
+            </div>
+            <p class="eyebrow mt-5">{treatment.category}</p>
+            <h3 class="font-display text-2xl text-brand-dark mt-2 leading-tight">{treatment.name}</h3>
+            <div class="mt-auto pt-4 flex items-center justify-between gap-4">
+              <span class="font-body text-sm text-brand-muted">{treatment.price ?? priceOnRequest}</span>
+              <a
+                href={bookingUrl(treatment.name)}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="font-body text-xs font-medium uppercase tracking-[0.2em] text-brand-dark border-b border-brand-dark pb-0.5 hover:text-primary hover:border-primary transition-colors"
+              >
+                {bookLabel}
+              </a>
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+
+    <div class="mt-12 text-center">
+      <a href={viewAllHref} class="btn-outline-dark">{viewAllLabel}</a>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLElement>("[data-featured]").forEach((section) => {
+    const track = section.querySelector<HTMLElement>("[data-featured-track]");
+    if (!track) return;
+    const step = () => (track.firstElementChild as HTMLElement | null)?.offsetWidth ?? 300;
+    section
+      .querySelector("[data-featured-prev]")
+      ?.addEventListener("click", () => track.scrollBy({ left: -step() - 24 }));
+    section
+      .querySelector("[data-featured-next]")
+      ?.addEventListener("click", () => track.scrollBy({ left: step() + 24 }));
+  });
+</script>

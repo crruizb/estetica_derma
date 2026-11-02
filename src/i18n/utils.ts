@@ -11,3 +11,7 @@ export function useTranslations(lang: keyof typeof ui) {
     return ui[lang][key] || ui[defaultLang][key];
   }
 }
+// Prefixes a site path with the language segment (Spanish lives at the root).
+export function localizedPath(lang: keyof typeof ui, path = "") {
+  return lang === defaultLang ? `/${path}` : `/${lang}/${path}`;
+}
