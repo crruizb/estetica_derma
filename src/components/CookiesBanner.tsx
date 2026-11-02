@@ -1,5 +1,4 @@
 import { CookieIcon } from "lucide-react";
-import { Button } from "./ui/button";
 import { cn } from "@/lib/utils"
 import { useState, useEffect } from "react";
 
@@ -55,26 +54,21 @@ export default function CookiesBanner({ title, p1, click, acceptText, usage, rea
 
   return (
       <div className={cn("fixed z-[99999999999999999999] bottom-0 left-0 right-0 sm:left-4 sm:bottom-4 w-full sm:max-w-md transition-transform duration-700", !isOpen ? "transition-[opacity,transform] translate-y-8 opacity-0" : "transition-[opacity,transform] translate-y-0 opacity-100", hide && "hidden")}>
-          <div className="bg-gray-100 rounded-md m-2">
-              <div className="grid gap-2">
-                  <div className="border-b border-border border-gray-300 h-14 flex items-center justify-between p-4">
-                      <h2 className="text-lg font-medium">{title}</h2>
-                      <CookieIcon className="h-[1.2rem] w-[1.2rem]" />
-                  </div>
-                  <div className="p-4">
-                      <p className="text-sm font-normal">
-                      {p1}
-                          <br />
-                          <br />
-                          <span className="text-xs">{click}<span className="font-medium opacity-80">{acceptText}</span>{usage}</span>
-                          <br />
-                          <a href="/politica-cookies/" className="text-xs underline">{readMore}</a>
-                      </p>
-                  </div>
-                  <div className="flex gap-2 p-4 py-5 border-t border-border bg-background/20">
-                      <Button onClick={accept} className="w-full bg-rose-400 hover:bg-rose-500">{acceptText}</Button>
-                      <Button onClick={decline} className="w-full bg-white hover:bg-gray-300" variant="secondary">{declineText}</Button>
-                  </div>
+          <div className="bg-warm-white border border-brand-border shadow-2xl m-2">
+              <div className="flex items-center justify-between px-6 pt-6">
+                  <h2 className="font-display text-2xl text-brand-dark">{title}</h2>
+                  <CookieIcon className="h-5 w-5 text-primary" />
+              </div>
+              <div className="px-6 pt-4 pb-6 font-body text-sm text-brand-muted leading-relaxed">
+                  <p>{p1}</p>
+                  <p className="mt-3 text-xs">
+                      {click}<span className="font-medium text-brand-dark">{acceptText}</span>{usage}{" "}
+                      <a href="/politica-cookies/" className="underline hover:text-primary transition-colors">{readMore}</a>
+                  </p>
+              </div>
+              <div className="flex gap-3 px-6 pb-6">
+                  <button type="button" onClick={accept} className="btn-dark flex-1 px-4">{acceptText}</button>
+                  <button type="button" onClick={decline} className="btn-outline-dark flex-1 px-4">{declineText}</button>
               </div>
           </div>
       </div>

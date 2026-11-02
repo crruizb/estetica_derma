@@ -1,22 +1,5 @@
 ---
-import BaseLayout from "./BaseLayout.astro";
-import Logo from "../components/Logo.astro";
-import { NavMenu } from "../components/ui/NavMenu";
-import NavMobile from "../components/NavMobile";
-import InstagramIcon from "../components/icons/InstagramIcon.astro";
-import { useTranslations } from "../i18n/utils";
-import LanguageSelector from "../components/LanguageSelector";
-import Footer from "../components/Footer.astro";
-import WhatsAppButton from "../components/WhatsAppButton.astro";
-
-const t = useTranslations("es");
-
-const navRoutes = [
-  { label: t("routes.home"), href: "/#home" },
-  { label: t("routes.services"), href: "/#servicios" },
-  { label: t("routes.gallery"), href: "/#galeria" },
-  { label: t("routes.ubication"), href: "/#ubicacion" },
-];
+import SiteLayout from "./SiteLayout.astro";
 
 interface Props {
   title?: string;
@@ -24,52 +7,16 @@ interface Props {
   canonical?: string;
 }
 
-const {
-  title,
-  description,
-  canonical,
-} = Astro.props;
+const { title, description, canonical } = Astro.props;
 ---
 
-<BaseLayout lang="es" title={title} description={description} canonical={canonical}>
-  <header
-    class="fixed top-0 left-0 right-0 z-40 transition-all duration-300 bg-warm-white/95 backdrop-blur-sm shadow-sm"
-  >
-    <div class="mx-auto max-w-7xl px-6 lg:px-10">
-      <div class="flex items-center justify-between h-20 lg:h-24">
-        <a href="/#home" class="transition-opacity hover:opacity-80" aria-label={t("seo.siteName")}>
-          <Logo />
-        </a>
-
-        <div class="hidden lg:flex items-center gap-8">
-          <NavMenu routes={navRoutes} client:visible />
-          <div class="h-6 w-px bg-brand-border"></div>
-          <InstagramIcon />
-          <LanguageSelector lang="es" client:load />
-        </div>
-
-        <div class="flex items-center gap-3 lg:hidden">
-          <InstagramIcon />
-          <NavMobile routes={navRoutes} client:visible />
-          <LanguageSelector lang="es" client:load />
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <main class="pt-20 lg:pt-24">
-    <slot />
-  </main>
-
-  <Footer
-    subtitle={t("logo.subtitle")}
-    address={t("about.contact.p1")}
-    contact={t("contact")}
-    company={t("empresa")}
-    services={t("servicios")}
-    cookiesPolicy={t("cookies_policy")}
-    privacyPolicy={t("privacy_policy")}
-    legalPolicy={t("legal_policy")}
-  />
-  <WhatsAppButton />
-</BaseLayout>
+<SiteLayout
+  lang="es"
+  page="legal"
+  title={title}
+  description={description}
+  canonical={canonical}
+  showCookies={false}
+>
+  <slot />
+</SiteLayout>

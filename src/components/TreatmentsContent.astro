@@ -1,0 +1,161 @@
+---
+import ImagePlaceholder from "./ImagePlaceholder.astro";
+import { categories, getTreatments } from "../data/treatments";
+import { localizedPath, useTranslations } from "../i18n/utils";
+import { ui } from "../i18n/ui";
+
+interface Props {
+  lang: keyof typeof ui;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const treatments = getTreatments(lang);
+
+const categoryLabel = {
+  facial: t("services.facial.title"),
+  body: t("services.body.title"),
+  spa: t("services.spa.title"),
+};
+const categorySummary = {
+  facial: t("services.facial.summary"),
+  body: t("services.body.summary"),
+  spa: t("services.spa.summary"),
+};
+
+const bookingUrl = (message: string) =>
+  `https://wa.me/34691310652?text=${encodeURIComponent(message)}`;
+
+const tabClass =
+  "shrink-0 font-body text-xs font-medium uppercase tracking-[0.2em] py-4 border-b-2 border-transparent text-brand-muted hover:text-brand-dark transition-colors aria-pressed:border-brand-dark aria-pressed:text-brand-dark";
+---
+
+<section class="bg-warm-white pt-12 md:pt-16 pb-10 md:pb-14">
+  <div class="mx-auto max-w-7xl px-6 lg:px-10 text-center">
+    <nav aria-label="Breadcrumb" class="font-body text-[11px] uppercase tracking-[0.2em] text-brand-muted">
+      <a href={localizedPath(lang)} class="hover:text-primary transition-colors">{t("routes.home")}</a>
+      <span class="mx-2">/</span>
+      <span class="text-brand-dark">{t("treatments.title")}</span>
+    </nav>
+    <h1 class="font-display text-5xl md:text-6xl lg:text-7xl font-normal text-brand-dark mt-6">
+      {t("treatments.title")}
+    </h1>
+    <p class="font-body text-base md:text-lg text-brand-muted leading-relaxed max-w-2xl mx-auto mt-6">
+      {t("treatments.intro")}
+    </p>
+  </div>
+</section>
+
+<section class="bg-warm-white pb-20 md:pb-28" data-treatments>
+  <div class="border-y border-brand-border">
+    <div class="mx-auto max-w-7xl px-6 lg:px-10 flex items-center justify-between gap-6">
+      <div class="no-scrollbar flex gap-6 md:gap-10 overflow-x-auto" role="group">
+        <button type="button" class={tabClass} data-filter="all" aria-pressed="true">
+          {t("treatments.filter.all")}
+        </button>
+        {
+          categories.map((category) => (
+            <button type="button" class={tabClass} data-filter={category} aria-pressed="false">
+              {categoryLabel[category]}
+            </button>
+          ))
+        }
+      </div>
+      <p class="hidden md:block shrink-0 font-body text-xs uppercase tracking-[0.2em] text-brand-muted">
+        <span data-count>{treatments.length}</span> {t("treatments.count")}
+      </p>
+    </div>
+  </div>
+
+  <div class="mx-auto max-w-7xl px-6 lg:px-10">
+    {
+      categories.map((category) => (
+        <p
+          class="font-display italic text-xl md:text-2xl text-brand-dark text-center max-w-2xl mx-auto mt-10 hidden"
+          data-summary={category}
+        >
+          {categorySummary[category]}
+        </p>
+      ))
+    }
+
+    <ul class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 lg:gap-x-6 gap-y-10 lg:gap-y-14 mt-10 lg:mt-14">
+      {
+        treatments.map((treatment) => (
+          <li class="group flex flex-col" data-category={treatment.category}>
+            <div class="overflow-hidden aspect-square">
+              {treatment.image ? (
+                <img
+                  src={treatment.image}
+                  alt={treatment.name}
+                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  loading="lazy"
+                  decoding="async"
+                />
+              ) : (
+                <ImagePlaceholder label={t("placeholder.image")} class="w-full h-full" />
+              )}
+            </div>
+            <p class="eyebrow text-[10px] mt-4">{categoryLabel[treatment.category]}</p>
+            <h2 class="font-display text-lg md:text-xl text-brand-dark mt-1.5 leading-snug">{treatment.name}</h2>
+            <div class="mt-auto pt-3 flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
+              <span class="font-body text-sm text-brand-muted">
+                {treatment.price ?? t("featured.price_on_request")}
+              </span>
+              <a
+                href={bookingUrl(t("booking.whatsapp") + treatment.name)}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="font-body text-[11px] font-medium uppercase tracking-[0.2em] text-brand-dark border-b border-brand-dark pb-0.5 hover:text-primary hover:border-primary transition-colors"
+              >
+                {t("featured.book")}
+              </a>
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<section class="bg-brand-dark py-16 md:py-20">
+  <div class="mx-auto max-w-7xl px-6 lg:px-10 flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left">
+    <p class="font-display italic text-2xl md:text-3xl text-warm-white">{t("home.p3")}</p>
+    <a href={bookingUrl(t("booking.whatsapp"))} target="_blank" rel="noopener noreferrer" class="btn-light shrink-0">
+      {t("home.cta")}
+    </a>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLElement>("[data-treatments]").forEach((section) => {
+    const buttons = section.querySelectorAll<HTMLButtonElement>("[data-filter]");
+    const items = section.querySelectorAll<HTMLElement>("[data-category]");
+    const summaries = section.querySelectorAll<HTMLElement>("[data-summary]");
+    const count = section.querySelector("[data-count]");
+
+    const apply = (filter: string) => {
+      let visible = 0;
+      buttons.forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.filter === filter)));
+      items.forEach((item) => {
+        const show = filter === "all" || item.dataset.category === filter;
+        item.classList.toggle("hidden", !show);
+        if (show) visible++;
+      });
+      summaries.forEach((s) => s.classList.toggle("hidden", s.dataset.summary !== filter));
+      if (count) count.textContent = String(visible);
+    };
+
+    buttons.forEach((b) =>
+      b.addEventListener("click", () => {
+        const filter = b.dataset.filter ?? "all";
+        apply(filter);
+        history.replaceState(null, "", filter === "all" ? location.pathname : `#${filter}`);
+      }),
+    );
+
+    // Allow deep links such as /tratamientos/#facial
+    const initial = location.hash.slice(1);
+    if ([...buttons].some((b) => b.dataset.filter === initial)) apply(initial);
+  });
+</script>

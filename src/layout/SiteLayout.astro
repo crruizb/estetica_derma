@@ -1,0 +1,78 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import Footer from "../components/Footer.astro";
+import WhatsAppButton from "../components/WhatsAppButton.astro";
+import CookiesBanner from "../components/CookiesBanner";
+import { localizedPath, useTranslations } from "../i18n/utils";
+import { ui } from "../i18n/ui";
+
+interface Props {
+  lang: keyof typeof ui;
+  page?: "home" | "treatments" | "legal";
+  title?: string;
+  description?: string;
+  canonical?: string;
+  includeLeaflet?: boolean;
+  showCookies?: boolean;
+}
+
+const {
+  lang,
+  page = "home",
+  title,
+  description,
+  canonical,
+  includeLeaflet = false,
+  showCookies = true,
+} = Astro.props;
+const t = useTranslations(lang);
+---
+
+<BaseLayout
+  lang={lang}
+  title={title}
+  description={description}
+  canonical={canonical}
+  includeLeaflet={includeLeaflet}
+>
+  <SiteHeader lang={lang} page={page} />
+
+  <main>
+    <slot />
+  </main>
+
+  {
+    showCookies && (
+      <CookiesBanner
+        client:load
+        title={t("cookies.title")}
+        p1={t("cookies.p1")}
+        click={t("cookies.click")}
+        acceptText={t("cookies.accept")}
+        usage={t("cookies.usage")}
+        readMore={t("cookies.read_more")}
+        declineText={t("cookies.decline")}
+        demo={false}
+        onAcceptCallback={() => {}}
+        onDeclineCallback={() => {}}
+      />
+    )
+  }
+
+  <Footer
+    subtitle={t("logo.subtitle")}
+    address={t("about.contact.p1")}
+    contact={t("contact")}
+    company={t("empresa")}
+    services={t("servicios")}
+    servicesHref={localizedPath(lang, "tratamientos/")}
+    cookiesPolicy={t("cookies_policy")}
+    privacyPolicy={t("privacy_policy")}
+    legalPolicy={t("legal_policy")}
+    horaryTitle={t("about.horary.title")}
+    horary={[t("about.horary.p1"), t("about.horary.p2")]}
+    followLabel={t("footer.follow")}
+  />
+  <WhatsAppButton />
+</BaseLayout>

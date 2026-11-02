@@ -1,3 +1,4 @@
+import Autoplay from "embla-carousel-autoplay";
 import {
   Carousel,
   CarouselContent,
@@ -14,11 +15,16 @@ interface Images {
   images: Image[];
   className?: string;
   priority?: boolean;
+  autoplay?: boolean;
 }
 
-export function CarouselWrapper({ images, className = "h-96 xl:h-[48rem]", priority = false }: Images) {
+export function CarouselWrapper({ images, className = "h-96 xl:h-[48rem]", priority = false, autoplay = false }: Images) {
   return (
-    <Carousel className={className}>
+    <Carousel
+      className={className}
+      opts={{ loop: autoplay }}
+      plugins={autoplay ? [Autoplay({ delay: 6000, stopOnInteraction: false })] : undefined}
+    >
       <CarouselContent className={className}>
         {
           images.map((image) => (
